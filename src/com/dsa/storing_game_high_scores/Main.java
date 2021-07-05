@@ -1,8 +1,7 @@
 package com.dsa.storing_game_high_scores;
 
 /**
- * DSA in Java Textbook, Sixth Edition (By Michael T. Goodrich, Roberto Tamassia and Michael H. Goldwasser)
- * Chapter 3.1: Storing Game Entries in an Array
+ * Chapter 3.1: Storing high score Game Entries in an Scoreboard
  */
 public class Main {
 
