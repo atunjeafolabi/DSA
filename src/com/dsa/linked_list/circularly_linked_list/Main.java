@@ -1,5 +1,7 @@
 package com.dsa.linked_list.circularly_linked_list;
 
+import com.dsa.Person;
+
 public class Main {
     public static void main(String[] args){
         CircularlyLinkedList<Person> persons = new CircularlyLinkedList<Person>();

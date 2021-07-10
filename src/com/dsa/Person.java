@@ -1,4 +1,4 @@
-package com.dsa.linked_list.circularly_linked_list;
+package com.dsa;
 
 public class Person {
     String name;
