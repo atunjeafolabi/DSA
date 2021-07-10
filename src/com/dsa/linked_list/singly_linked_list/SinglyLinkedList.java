@@ -75,4 +75,35 @@ public class SinglyLinkedList<E> {
             tail = null; // special case as list is now empty
         return answer;
     }
+    // As implemented in textbook bearing in mind Type erasure in java
+//    public boolean equals(Object o) {
+//        if (o == null) return false;
+//        if (getClass() != o.getClass()) return false;    // Ensure that the parameter o is an instance of the SinglyLinkedList class (or an appropriate subclass)
+//        SinglyLinkedList other = (SinglyLinkedList) o; // use nonparameterized type
+//        if (size != other.size) return false;
+//        Node walkA = head; // traverse the primary list
+//        Node walkB = other.head; // traverse the secondary list
+//        while (walkA != null) {
+//            if (!walkA.getElement().equals(walkB.getElement())) return false; //mismatch
+//            walkA = walkA.getNext();
+//            walkB = walkB.getNext();
+//        }
+//        return true; // if we reach this, everything matched successfully
+//    }
+
+    // This also still works even when the formal type declaration E is included. This is more intuitive
+    public boolean equals(SinglyLinkedList<E> otherList) {
+        if (otherList == null) return false;
+        if (getClass() != otherList.getClass()) return false;   // Ensure that the parameter o is an instance of the SinglyLinkedList class (or an appropriate subclass)
+        SinglyLinkedList<E> other = otherList;
+        if (size != other.size) return false;
+        Node<E> walkA = head; // traverse the primary list
+        Node<E> walkB = other.head; // traverse the secondary list
+        while (walkA != null) {
+            if (!walkA.getElement().equals(walkB.getElement())) return false; //mismatch
+            walkA = walkA.getNext();
+            walkB = walkB.getNext();
+        }
+        return true; // if we reach this, everything matched successfully
+    }
 }

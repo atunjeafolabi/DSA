@@ -22,7 +22,25 @@ public class Main {
         System.out.println(persons.first());
         System.out.println(persons.last());
 
-        persons.removeFirst();
-        System.out.println("Size of persons list: " + persons.size());
+//        persons.removeFirst();
+//        System.out.println("Size of persons list: " + persons.size());
+
+        System.out.println("\n---Equivalence Testing---\n");
+
+        // Equivalence testing of two lists
+        SinglyLinkedList<Person> otherPersons = new SinglyLinkedList<Person>();
+
+        otherPersons.addFirst(segun);
+        otherPersons.addFirst(john);
+        otherPersons.addLast(sam);
+        System.out.println("Should return true for two lists with thesame size and elements: " + persons.equals(otherPersons));
+
+        // Add one more person to make the otherPersons list different from persons list
+        Person ana = new Person("Ana", 25);
+        otherPersons.addFirst(ana);
+        System.out.println("Should return false for two lists with different size and elements:  " + persons.equals(otherPersons));
+
+        // A List should equal itself
+        System.out.println("A list should equal itself: " + persons.equals(persons));
     }
 }
