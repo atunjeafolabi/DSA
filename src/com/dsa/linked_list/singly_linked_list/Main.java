@@ -19,8 +19,9 @@ public class Main {
         System.out.println("Is persons list Empty? " + persons.isEmpty());
         System.out.println("Size of persons list: " + persons.size());
 
-        System.out.println(persons.first());
-        System.out.println(persons.last());
+        System.out.println("First Person: " + persons.first());
+        System.out.println("Last Person" + persons.last());
+        System.out.println("Second to Last Person: " + persons.secondToLast());
 
 //        persons.removeFirst();
 //        System.out.println("Size of persons list: " + persons.size());

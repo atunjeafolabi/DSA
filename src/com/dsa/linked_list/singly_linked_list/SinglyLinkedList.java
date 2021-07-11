@@ -75,6 +75,23 @@ public class SinglyLinkedList<E> {
             tail = null; // special case as list is now empty
         return answer;
     }
+
+    /**
+     * Returns the element in the node just before the tail node
+     * i.e #->#->#->P->#->null
+     *
+     * @return
+     */
+    public E secondToLast(){
+        if(isEmpty()) return null;
+        Node<E> pointer = head;
+        Node<E> prev = null;
+        while(pointer.getNext() != null){
+            prev = pointer;
+            pointer = pointer.getNext();
+        }
+        return prev.getElement();
+    }
     // As implemented in textbook bearing in mind Type erasure in java
 //    public boolean equals(Object o) {
 //        if (o == null) return false;
