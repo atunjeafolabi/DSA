@@ -21,7 +21,10 @@ public class TicTacToe {
     }
 
     // Puts an X or O mark at position i,j.
-    public void putMark(int i, int j) throws IllegalArgumentException {
+    public void putMark(int i, int j) throws IllegalArgumentException, IllegalStateException {
+        if(isWin(X) || isWin(O)){
+            throw new IllegalStateException("Game ended. A player already won.");
+        }
         if ((i < 0) || (i > 2) || (j < 0) || (j > 2))
             throw new IllegalArgumentException("Invalid board position");
         if (board[i][j] != EMPTY)
@@ -72,12 +75,27 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         TicTacToe game = new TicTacToe();
+        // Game that ends in a tie
         /* X moves */                     /* O moves */
         game.putMark(1,1);          game.putMark(0,2);
         game.putMark(2,2);          game.putMark(0,0);
         game.putMark(0,1);          game.putMark(2,1);
         game.putMark(1,2);          game.putMark(1,0);
         game.putMark(2,0);
+
+        // Game where O wins
+        /* X moves */                     /* O moves */
+//        game.putMark(1,1);          game.putMark(0,2);
+//        game.putMark(2,2);          game.putMark(0,0);
+//        game.putMark(2,1);          game.putMark(0,1);
+
+        // Game where Owins. It throws an exception when X try to play after Owins
+        /* X moves */                     /* O moves */
+//        game.putMark(1,1);          game.putMark(0,2);
+//        game.putMark(2,2);          game.putMark(0,0);
+//        game.putMark(2,1);          game.putMark(0,1);
+//        game.putMark(1,2);
+
         System.out.println(game);
         int winningPlayer = game.winner();
         String[] outcome = {"Owins", "Tie", "Xwins"}; //rely on ordering
