@@ -1,7 +1,7 @@
 package com.dsa;
 
 /*
-    Chapter 4: Code Fragment 4.5: Algorithm disjoint1 for testing three-way set disjointness.
+    Chapter 4: Code Fragment 4.5: Algorithm disjoint2 for testing three-way set disjointness.
     ----------------------------------------------------------------------------------------
     Suppose we are given three sets, A, B, and C, stored in three different integer arrays.
     We will assume that no individual set contains duplicate values, but that there may be some numbers
@@ -10,9 +10,9 @@ package com.dsa;
  */
 public class ThreeWayDisjointArrays {
     public static void main(String args[]){
-        int[] A = {2,8,10,6,7};
-        int[] B = {22,21,29,20,25,7};
-        int[] C = {31,39,32,30,35,7};
+        int[] A = {2,8,10,6};
+        int[] B = {22,21,29,20,25};
+        int[] C = {31,39,32,30,35};
 
         System.out.println("Are the sets disjoint? " + disjoint2(A, B, C));
     }
@@ -26,6 +26,7 @@ public class ThreeWayDisjointArrays {
                         if (a == c)         // and thus b == c as well
                             return false;   // we found a common value
                     }
+//                   break;   // A further improvement
                 }
             }
         }
