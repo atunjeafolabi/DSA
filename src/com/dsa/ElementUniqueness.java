@@ -11,14 +11,16 @@ import java.util.Arrays;
  * indices j < k, checking if any of those pairs refer to elements that are equivalent to each other. It does this using two nested for loops,
  * such that the ﬁrst iteration of the outer loop causes n−1 iterations of the inner loop, the second iteration of the outer loop causes n − 2
  * iterations of the inner loop, and so on. Thus, the worst-case running time of this method is proportional to (n−1)+(n−2)+···+2+1,
- * which we recognize as the familiar O(n 2 ) summation from Proposition 4.3
- * This method is implemented in unique1
+ * which we recognize as the familiar O(n^2) summation from Proposition 4.3
+ * This method is implemented in unique1 and has a time complexity of O(n^2).
  *
  *
  * An even better algorithm for the element uniqueness problem is based on using sorting as a problem-solving tool.
  * In this case, by sorting the array of elements, we are guaranteed that any duplicate elements will be placed next to each other.
  * Thus, to determine if there are any duplicates, all we need to do is perform a single pass over the sorted array, looking for
- * consecutive duplicates. This method is implemented in unique2
+ * consecutive duplicates.
+ * This method is implemented in unique2 and has a time complexity of O(nlogn).
+ * (TODO: I still need to figure out how this time complexity for unique2 was arrived at)
  */
 public class ElementUniqueness {
     public static void main(String args[]){
