@@ -9,10 +9,10 @@ public class BinarySearch {
 
     public static void main(String[] args){
         int[] ages = {2, 4, 5, 7, 10, 14, 20, 30};
-        System.out.println(search(14, ages, 0, 7));
+        System.out.println(binarySearch(14, ages, 0, 7));
     }
 
-    public static int search(int target, int[] array, int indexLowest, int indexHighest) {
+    public static int binarySearch(int target, int[] array, int indexLowest, int indexHighest) {
         if (indexLowest > indexHighest) {
             return -1;
         }
@@ -25,9 +25,9 @@ public class BinarySearch {
         }
 
         if (target < number) {
-            return search(target, array, indexLowest, middle - 1);
+            return binarySearch(target, array, indexLowest, middle - 1);
         } else {
-            return search(target, array, middle + 1, indexHighest);
+            return binarySearch(target, array, middle + 1, indexHighest);
         }
     }
 }

@@ -8,7 +8,7 @@ package com.dsa.recusrion;
 public class EnglishRuler {
 
     public static void main(String[] args) {
-        EnglishRuler.drawRuler(5, 3);
+        EnglishRuler.drawRuler(3, 3);
     }
 
     public static void drawRuler(int nInchesInRuler, int majorTickLength) {
