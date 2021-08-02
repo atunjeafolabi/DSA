@@ -4,6 +4,7 @@ package com.dsa.recusrion;
  * Code Fragment 5.6:
  * ------------------
  * Summing an array of integers using linear recursion.
+ * Time complexity: O(n)
  */
 public class ArraySum {
 
