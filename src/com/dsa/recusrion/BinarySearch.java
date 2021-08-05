@@ -4,6 +4,9 @@ package com.dsa.recusrion;
  * Code Fragment 5.3:
  * -----------------
  * An implementation of the binary search algorithm on a sorted array using recursion.
+ * Return the index of the target if found
+ *
+ * This kind of recursion is an example of tail recursion
  */
 public class BinarySearch {
 
