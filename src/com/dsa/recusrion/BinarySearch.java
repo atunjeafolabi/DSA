@@ -4,7 +4,8 @@ package com.dsa.recusrion;
  * Code Fragment 5.3:
  * -----------------
  * An implementation of the binary search algorithm on a sorted array using recursion.
- * Return the index of the target if found
+ * Return the index of the target if found.
+ * Return -1 if the target is not found
  *
  * This kind of recursion is an example of tail recursion
  */
@@ -12,7 +13,7 @@ public class BinarySearch {
 
     public static void main(String[] args){
         int[] ages = {2, 4, 5, 7, 10, 14, 20, 30};
-        System.out.println(binarySearch(14, ages, 0, 7));
+        System.out.println(binarySearch(145, ages, 0, 7));
     }
 
     public static int binarySearch(int target, int[] array, int indexLowest, int indexHighest) {
