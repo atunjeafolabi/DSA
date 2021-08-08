@@ -19,7 +19,7 @@ public class ArrayStack<E> implements Stack<E> {
 
     public ArrayStack(final int capacity) {
         // In java, type parameter E cannot be instantiated directly,
-        // so we instantiate the generic Object.
+        // so we instantiate the generic Object class.
         // this.data = new E[capacity];  is not allowed
         // Instead, we use new Object[capacity] and then cast it to type E[]
         this.data = (E[]) new Object[capacity];     // safe cast; compiler may give warning
