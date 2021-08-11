@@ -1,5 +1,7 @@
 package com.dsa.Queue.ArrayQueue;
 
+import com.dsa.Queue.Queue;
+
 /**
  * Code Fragment 6.10:
  * -------------------

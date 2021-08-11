@@ -1,4 +1,4 @@
-package com.dsa.Queue.ArrayQueue;
+package com.dsa.Queue;
 
 /**
  * Code Fragment 6.9:
