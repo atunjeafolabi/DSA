@@ -11,7 +11,7 @@ public interface Queue<E> {
 
     /**
      * Adds element e to the back of queue.
-     * @param e
+     * @param element
      */
     void enqueue(E element);
 
