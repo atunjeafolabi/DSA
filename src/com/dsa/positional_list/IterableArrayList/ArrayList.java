@@ -32,7 +32,7 @@ public class ArrayList<E> implements List<E> {
          */
         public boolean hasNext() {
             return j < size;
-        } // size is field of outer instance
+        }        // size is field of outer instance
 
         /**
          * Returns the next object in the iterator.
@@ -60,13 +60,13 @@ public class ArrayList<E> implements List<E> {
         }
     }
 
-    public static final int CAPACITY = 16; // default array capacity
+    public static final int CAPACITY = 16;                  // default array capacity
     private E[] data;                                       // generic array used for storage
     private int size = 0;                                   // current number of elements
 
     public ArrayList() {
         this(CAPACITY);
-    } // constructs list with default capacity
+    }                  // constructs list with default capacity
 
     public ArrayList(int capacity) {                        // constructs list with given capacity
         data = (E[]) new Object[capacity];                  // safe cast; compiler may give warning

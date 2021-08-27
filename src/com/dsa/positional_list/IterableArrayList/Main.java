@@ -1,7 +1,5 @@
 package com.dsa.positional_list.IterableArrayList;
 
-import com.dsa.Lists.List;
-
 import java.util.Iterator;
 
 public class Main {
