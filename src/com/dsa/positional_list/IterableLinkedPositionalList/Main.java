@@ -13,9 +13,21 @@ public class Main {
         queueInSupermarket.addLast("Bayo");
         queueInSupermarket.addLast("Ben");
 
-        for (Iterator<String> it = queueInSupermarket.iterator(); it.hasNext(); ) {
-            String person = it.next();
+//        for (Iterator<String> it = queueInSupermarket.iterator(); it.hasNext(); ) {
+//            String person = it.next();
+//            System.out.println(person);
+//        }
+
+        // Iterating through the contents/elements of the list directly
+        for (String person : queueInSupermarket ) {
             System.out.println(person);
+        }
+
+        System.out.println("\n------------------\n");
+
+        // Iterating though positions then subsequently getting the list contents
+        for (Position<String> p : queueInSupermarket.positions()) {
+            System.out.println(p.getElement());
         }
     }
 }
