@@ -1,6 +1,6 @@
 package com.dsa.positional_list;
 
-public interface PositionalList<E> {
+public interface PositionalList<E> extends Iterable<E>   {
 
     Position<E> first();
 

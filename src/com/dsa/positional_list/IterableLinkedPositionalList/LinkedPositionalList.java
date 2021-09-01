@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * ------------------------------------------------------------------------------------------------------
  * Support for providing iterations of positions and elements of a LinkedPositionalList.
  */
-public class LinkedPositionalList<E> implements PositionalList<E>, Iterable<E> {
+public class LinkedPositionalList<E> implements PositionalList<E> {
 
     private static class Node<E> implements Position<E> {
         private E element;                  // reference to the element stored at this node
@@ -131,8 +131,6 @@ public class LinkedPositionalList<E> implements PositionalList<E>, Iterable<E> {
     public Iterator<E> iterator() {
         return new ElementIterator();
     }
-
-
 
     // instance variables of the LinkedPositionalList
     private Node<E> header;             // header sentinel
