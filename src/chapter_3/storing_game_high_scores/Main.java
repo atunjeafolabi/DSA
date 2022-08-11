@@ -1,7 +1,7 @@
-package com.dsa.storing_game_high_scores;
+package chapter_3.storing_game_high_scores;
 
 /**
- * Chapter 3.1: Storing high score Game Entries in an Scoreboard
+ * Chapter 3.1: Storing high score Game Entries in a Scoreboard
  */
 public class Main {
 
@@ -23,7 +23,8 @@ public class Main {
         // Display all the entries the board currently contains
         System.out.println(newScoreboard);
 
-        // Remove one entry at index 2, i.e Mike
+        // Remove one entry at index 2, i.e Ann
+        // Index 2 is Ann because, entries are stored in increasing order of scores.
         newScoreboard.remove(2);
 
         System.out.println("===New Scoreboard after removal===" + "\n");
