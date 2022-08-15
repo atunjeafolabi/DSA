@@ -1,4 +1,4 @@
-package com.dsa.linked_list.circularly_linked_list;
+package chapter_3.linked_list.circularly_linked_list;
 
 public class CircularlyLinkedList<E> {
 
