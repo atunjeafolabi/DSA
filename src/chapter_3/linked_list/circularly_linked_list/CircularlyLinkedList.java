@@ -40,18 +40,23 @@ public class CircularlyLinkedList<E> {
     }
 
     public E first() {                              // returns but does not remove the first element
-        if (isEmpty()) return null;
+        if (isEmpty()) {
+            return null;
+        }
         return tail.getNext().getElement();         // head is after the tail
     }
 
     public E last() {                               // returns but does not remove the last element
-        if (isEmpty()) return null;
+        if (isEmpty()) {
+            return null;
+        }
+
         return tail.getElement();
     }
 
     public void rotate() {                          // rotate the first element to the back of the list
         if (tail != null)                           // do nothing if empty
-            tail = tail.getNext();                  // old head becomes new tail
+            tail = tail.getNext();                  // old "implicit head" becomes new tail
     }
 
     public void addFirst(E e) {                     // adds element e to the front of the list
@@ -71,11 +76,17 @@ public class CircularlyLinkedList<E> {
     }
 
     public E removeFirst() {                        // removes and returns the first element
-        if (isEmpty( )) return null;                // nothing to remove
+        if (isEmpty( )) {
+            return null;                            // nothing to remove
+        }
         Node<E> head = tail.getNext( );
-        if (head == tail) tail = null;              // must be the only node left
-        else tail.setNext(head.getNext( ));         // removes head from the list
+        if (head == tail) {
+            tail = null;                            // must be the only node left
+        } else {
+            tail.setNext(head.getNext( ));         // removes head from the list
+        }
         size--;
+
         return head.getElement( );
     }
 }
