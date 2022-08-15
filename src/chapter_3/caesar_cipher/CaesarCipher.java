@@ -43,6 +43,4 @@ public class CaesarCipher {
         String answer = cipher.decrypt(coded);
         System.out.println("Message = " + answer);
     }
-
-
 }

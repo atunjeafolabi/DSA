@@ -1,4 +1,4 @@
-package com.dsa.tic_tac_toe;
+package chapter_3.tic_tac_toe;
 
 // Chapter 3
 public class TicTacToe {
@@ -25,12 +25,14 @@ public class TicTacToe {
         if(isWin(X) || isWin(O)){
             throw new IllegalStateException("Game ended. A player already won.");
         }
-        if ((i < 0) || (i > 2) || (j < 0) || (j > 2))
+        if ((i < 0) || (i > 2) || (j < 0) || (j > 2)) {
             throw new IllegalArgumentException("Invalid board position");
-        if (board[i][j] != EMPTY)
+        }
+        if (board[i][j] != EMPTY) {
             throw new IllegalArgumentException("Board position occupied");
-        board[i][j] = player; // place the mark for the current player
-        player = -player; // switch players (uses fact that O = - X)
+        }
+        board[i][j] = player;                   // place the mark for the current player
+        player = -player;                       // switch players (uses fact that O = - X)
     }
 
     // Checks whether the board configuration is a win for the given player.
@@ -46,9 +48,15 @@ public class TicTacToe {
     }
 
     public int winner() {
-        if (isWin(X)) return (X);
-        else if (isWin(O)) return (O);
-        else return (0);
+        if (isWin(X)) {
+            return (X);
+        }
+        else if (isWin(O)) {
+            return (O);
+        }
+        else {
+            return (0);
+        }
     }
 
     public String toString() {
@@ -98,7 +106,7 @@ public class TicTacToe {
 
         System.out.println(game);
         int winningPlayer = game.winner();
-        String[] outcome = {"Owins", "Tie", "Xwins"}; //rely on ordering
+        String[] outcome = {"Owins", "Tie", "Xwins"};               //rely on ordering
         System.out.println(outcome[1 + winningPlayer]);
     }
 }
