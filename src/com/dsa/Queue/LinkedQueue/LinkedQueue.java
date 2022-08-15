@@ -1,7 +1,7 @@
 package com.dsa.Queue.LinkedQueue;
 
 import com.dsa.Queue.Queue;
-import com.dsa.linked_list.singly_linked_list.SinglyLinkedList;
+import chapter_3.linked_list.singly_linked_list.SinglyLinkedList;
 
 /**
  * Code Fragment 6.11:
