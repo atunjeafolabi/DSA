@@ -1,10 +1,10 @@
-package com.dsa.caesar_cipher;
+package chapter_3.caesar_cipher;
 
 // Chapter 3.1.4 Simple Cryptography with Character Arrays
 public class CaesarCipher {
 
-    protected char[] encoder = new char[26]; // encryption array
-    protected char[] decoder = new char[26]; // decryption array
+    protected char[] encoder = new char[26];            // encryption array
+    protected char[] decoder = new char[26];            // decryption array
 
     public CaesarCipher(int rotation) {
         for(int k=0; k < 26; k++) {
@@ -14,6 +14,7 @@ public class CaesarCipher {
     }
 
     public String encrypt(String message) {
+
         return transform(message, encoder);
     }
 
@@ -24,9 +25,9 @@ public class CaesarCipher {
     private String transform(String original, char[] code) {
         char[] msg = original.toCharArray();
         for(int k = 0; k < msg.length; k++) {
-            if(Character.isUpperCase(msg[k])) { // we have a letter to change
-                int j = msg[k] - 'A'; // will be a value 0 to 25
-                msg[k] = code[j]; // replace the char
+            if(Character.isUpperCase(msg[k])) {         // we have a letter to change
+                int j = msg[k] - 'A';                   // will be a value 0 to 25
+                msg[k] = code[j];                       // replace the char
             }
         }
         return new String(msg);

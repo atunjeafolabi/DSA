@@ -1,4 +1,4 @@
-package com.dsa.insertion_sort;
+package chapter_3.insertion_sort;
 
 public class InsertionSort {
     /** Insertion-sort of an array of characters into nondecreasing order */
@@ -19,7 +19,6 @@ public class InsertionSort {
 
     public static char[] insertionSort(char[] data){
         int n = data.length;
-
         for (int k = 1; k < n; k++) {           // begin with second character
 
             char cur = data[k];                 // time to insert cur=data[k]
