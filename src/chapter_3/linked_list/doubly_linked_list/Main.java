@@ -1,4 +1,4 @@
-package com.dsa.linked_list.doubly_linked_list;
+package chapter_3.linked_list.doubly_linked_list;
 
 import com.dsa.Person;
 
