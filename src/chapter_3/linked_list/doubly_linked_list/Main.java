@@ -1,6 +1,6 @@
 package chapter_3.linked_list.doubly_linked_list;
 
-import com.dsa.Person;
+import chapter_3.Person;
 
 public class Main {
     public static void main(String[] args){
