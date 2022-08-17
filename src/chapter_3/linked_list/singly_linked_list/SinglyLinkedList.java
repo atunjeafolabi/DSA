@@ -106,6 +106,26 @@ public class SinglyLinkedList<E> {
 
         return prev.getElement();
     }
+
+    public static SinglyLinkedList concatLists(SinglyLinkedList firstList, SinglyLinkedList secondList) {
+
+        SinglyLinkedList newList = new SinglyLinkedList<>();
+
+        Node walk = firstList.head;
+
+        for(int i=0; i < firstList.size(); i++) {
+            newList.addFirst(walk.getElement());
+            walk = walk.getNext();
+        }
+
+        walk = secondList.head;
+        for(int i=0; i < secondList.size(); i++) {
+            newList.addLast(walk.getElement());
+            walk = walk.getNext();
+        }
+
+        return newList;
+    }
     // As implemented in textbook bearing in mind Type erasure in java
 //    public boolean equals(Object o) {
 //        if (o == null) return false;
@@ -164,5 +184,21 @@ public class SinglyLinkedList<E> {
             }
         }
         return other;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Node<E> walk = head;
+
+        while (walk != null) {
+            sb.append(walk.getElement());
+            if (walk != tail) {
+                sb.append(", ");
+            }
+            walk = walk.getNext();
+        }
+        sb.append("]");
+
+        return sb.toString();
     }
 }
