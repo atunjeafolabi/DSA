@@ -16,13 +16,18 @@ public class Main {
         persons.addFirst(segun);
         persons.addFirst(john);
         persons.addLast(sam);
+        System.out.println("=== Now, some entries have been made into the list ===");
         System.out.println("Is persons list Empty? " + persons.isEmpty());
         System.out.println("Size of persons list: " + persons.size());
 
         System.out.println(persons.first());
         System.out.println(persons.last());
 
+        System.out.println("=== Now, Remove one entry from the list ===");
         persons.removeFirst();
         System.out.println("Size of persons list: " + persons.size());
+
+        // System.out.println("=== Now, we swap two nodes ===");
+        // TODO: swap to be tested
     }
 }

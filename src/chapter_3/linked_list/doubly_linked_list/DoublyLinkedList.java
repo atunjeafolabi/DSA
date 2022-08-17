@@ -112,4 +112,23 @@ public class DoublyLinkedList<E> {
         return node.getElement();
     }
 
+    public static void swap(Node x, Node y) {
+        Node xNext = x.getNext();
+        Node xPrev = x.getPrev();
+
+        Node yNext = y.getNext();
+        Node yPrev = y.getPrev();
+
+        x.setNext(yNext);
+        x.setPrev(yPrev);
+
+        y.setNext(xNext);
+        y.setPrev(xPrev);
+
+        xNext.setPrev(y);
+        xPrev.setNext(y);
+
+        yNext.setPrev(x);
+        yPrev.setNext(x);
+    }
 }
