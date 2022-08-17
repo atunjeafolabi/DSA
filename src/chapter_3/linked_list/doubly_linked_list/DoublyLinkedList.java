@@ -131,4 +131,37 @@ public class DoublyLinkedList<E> {
         yNext.setPrev(x);
         yPrev.setNext(x);
     }
+
+    public static DoublyLinkedList concatLists(DoublyLinkedList firstList, DoublyLinkedList secondList) {
+
+        DoublyLinkedList newList = new DoublyLinkedList<>();
+
+        Node walk = firstList.header.getNext();
+        while(walk != firstList.trailer) {
+            newList.addFirst(walk.getElement());
+            walk = walk.getNext();
+        }
+
+        walk = secondList.header.getNext();
+        while(walk != secondList.trailer) {
+            newList.addLast(walk.getElement());
+            walk = walk.getNext();
+        }
+
+        return newList;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Node<E> walk = header.getNext();
+
+        while (walk != trailer) {
+            sb.append(walk.getElement());
+            sb.append(", ");
+            walk = walk.getNext();
+        }
+        sb.append("]");
+
+        return sb.toString();
+    }
 }
