@@ -1,4 +1,4 @@
-package com.dsa;
+package chapter_4;
 
 /**
  * Chapter 3: Prefix Averages
@@ -22,13 +22,12 @@ public class PrefixAverages {
 
     /** Returns an array a such that, for all j, a[j] equals the average of x[0], ..., x[j]. */
     public static double[ ] prefixAverage2(double[ ] x) {
-
         int n = x.length;
-        double[] a = new double[n];     // ﬁlled with zeros by default
-        double total = 0;               // compute preﬁx sum as x[0] + x[1] + ...
+        double[] a = new double[n];                     // ﬁlled with zeros by default
+        double total = 0;                               // compute preﬁx sum as x[0] + x[1] + ...
         for (int j = 0; j < n; j++) {
-            total += x[j];              // update preﬁx sum to include x[j]
-            a[j] = total / (j + 1);     // compute average based on current sum
+            total += x[j];                              // update preﬁx sum to include x[j]
+            a[j] = total / (j + 1);                     // compute average based on current sum
         }
         return a;
     }
