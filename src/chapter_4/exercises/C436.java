@@ -5,6 +5,10 @@ import java.util.Arrays;
 /*
     Describe an efficient algorithm for finding the ten largest elements in an array of
     size n. What is the running time of your algorithm?
+
+    The Big-O of Arrays.sort() is O(nlogn) as defined in its implementation.
+    The Big-O of the for-loop is O(1) because it always run in a constant number of times no matter the input. (i.e 10 times).
+    Hence the overall Big-O = O(nlogn) + O(1) which is equal to O(nlogn).
 */
 public class C436 {
     public static void main(String[] args) {
@@ -20,6 +24,10 @@ public class C436 {
             j++;
         }
 
+        printArray(tenLargestElements);
+    }
+
+    private static void printArray(int[] tenLargestElements) {
         for (int a : tenLargestElements) {
             System.out.println(a);
         }
