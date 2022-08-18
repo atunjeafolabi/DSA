@@ -1,4 +1,4 @@
-package com.dsa;
+package chapter_4;
 
 /*
     Chapter 4: Code Fragment 4.5: Algorithm disjoint2 for testing three-way set disjointness.
@@ -21,15 +21,15 @@ public class ThreeWayDisjointArrays {
     public static boolean disjoint2(int[ ] groupA, int[ ] groupB, int[ ] groupC) {
         for (int a : groupA) {
             for (int b : groupB) {
-                if (a == b) {               // only check C when we ﬁnd match from A and B
+                if (a == b) {                       // only check C when we ﬁnd match from A and B
                     for (int c : groupC) {
-                        if (a == c)         // and thus b == c as well
-                            return false;   // we found a common value
+                        if (a == c)                 // and thus b == c as well
+                            return false;           // we found a common value
                     }
-//                   break;   // A further improvement
+//                   break;                         // A further improvement
                 }
             }
         }
-        return true;                        // if we reach this, sets are disjoint
+        return true;                                // if we reach this, sets are disjoint
     }
 }
