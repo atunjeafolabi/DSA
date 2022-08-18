@@ -1,4 +1,4 @@
-package com.dsa;
+package chapter_4;
 
 import java.util.Arrays;
 
@@ -24,7 +24,7 @@ import java.util.Arrays;
  */
 public class ElementUniqueness {
     public static void main(String args[]){
-        int[] array1 = {2, 7, 3, 5, 1, 4, 6};       // with unique elements
+        int[] array1 = {2, 7, 3, 5, 1, 4, 6};           // with unique elements
 //        int[] array1 = {2, 7, 3, 5, 1, 4, 6, 1};    // with elements not unique
 
         System.out.println(unique1(array1));
@@ -34,11 +34,14 @@ public class ElementUniqueness {
     /** Returns true if there are no duplicate elements in the array. */
     public static boolean unique1(int[ ] data) {
         int n = data.length;
-        for (int j=0; j < n-1; j++)
-            for (int k=j+1; k < n; k++)
+        for (int j=0; j < n-1; j++) {
+            for (int k = j + 1; k < n; k++) {
                 if (data[j] == data[k])
-                    return false; // found duplicate pair
-        return true; // if we reach this, elements are unique
+                    return false;               // found duplicate pair
+            }
+        }
+
+        return true;                            // if we reach this, elements are unique
     }
 
 //    /** Returns true if there are no duplicate elements in the array. */
