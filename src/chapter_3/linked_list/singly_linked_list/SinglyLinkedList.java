@@ -126,6 +126,48 @@ public class SinglyLinkedList<E> {
 
         return newList;
     }
+
+    /*
+     * Reverse a linked list using iteration method
+     *
+     * Original List:   #->#->#->#->#->#->null
+     * Reversed List:   null<-#<-#<-#<-#<-#<-#
+     */
+    public static void reverseIterative(SinglyLinkedList list) {
+        Node currentNode = list.head;
+        Node nextNode;
+        Node prevNode = null;
+        while (currentNode != null) {
+            nextNode = currentNode.getNext();
+            currentNode.setNext(prevNode);
+            prevNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        // swap head and tail
+        Node head = list.head;
+        list.head = list.tail;
+        list.tail = head;
+    }
+
+    /*
+     * Alternative method to reverse a linked list using two loops.
+     *
+     * In this technique, a temporary list in used to store the removed elements.
+     * The elements in the temporary list are then re-assigned to the original list.
+     *
+     */
+    public static void reverseIterative2(SinglyLinkedList list) {
+        SinglyLinkedList temp = new SinglyLinkedList<>();
+        while (list.head != null) {
+            temp.addFirst(list.removeFirst());
+        }
+
+        while(temp.head != null) {
+            list.addLast(temp.removeFirst());
+        }
+    }
+
     // As implemented in textbook bearing in mind Type erasure in java
 //    public boolean equals(Object o) {
 //        if (o == null) return false;

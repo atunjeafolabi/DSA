@@ -43,5 +43,19 @@ public class Main {
 
         // A List should equal itself
         System.out.println("A list should equal itself: " + persons.equals(persons));
+
+        System.out.println("=== Reverse List ===");
+        SinglyLinkedList list = new SinglyLinkedList<>();
+        list.addLast("Segun");
+        list.addLast("Olaide");
+        list.addLast("Bukola");
+        list.addLast("Ben");
+
+        System.out.println("Original List");
+        System.out.println(list.toString());
+
+        System.out.println("Reversed List");
+        SinglyLinkedList.reverseIterative(list);
+        System.out.println(list.toString());
     }
 }
