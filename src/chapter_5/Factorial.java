@@ -1,4 +1,4 @@
-package com.dsa;
+package chapter_5;
 
 /**
  * Code Fragment 5.1
@@ -13,10 +13,10 @@ public class Factorial {
 
     public static int factorial(int n) throws IllegalArgumentException {
         if (n < 0)
-            throw new IllegalArgumentException(); // argument must be nonnegative
+            throw new IllegalArgumentException();       // argument must be non-negative
         else if (n == 0)
-            return 1; // base case
+            return 1;                                   // base case
         else
-            return n * factorial(n - 1); // recursive case
+            return n * factorial(n - 1);            // recursive case
     }
 }
