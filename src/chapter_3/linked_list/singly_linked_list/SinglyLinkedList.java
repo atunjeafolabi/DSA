@@ -151,7 +151,7 @@ public class SinglyLinkedList<E> {
     }
 
     /*
-     * Alternative method to reverse a linked list using two loops.
+     * Alternative method for reversing a linked list using two loops.
      *
      * In this technique, a temporary list in used to store the removed elements.
      * The elements in the temporary list are then re-assigned to the original list.
@@ -165,6 +165,17 @@ public class SinglyLinkedList<E> {
 
         while(temp.head != null) {
             list.addLast(temp.removeFirst());
+        }
+    }
+
+    /**
+     * Alternative method for reversing a linked list using recursion
+     */
+    public void reverse() {
+        if (!isEmpty()) {
+            E nodeElement = removeFirst();
+            reverse();
+            addLast(nodeElement);
         }
     }
 

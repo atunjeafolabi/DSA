@@ -55,7 +55,8 @@ public class Main {
         System.out.println(list.toString());
 
         System.out.println("Reversed List");
-        SinglyLinkedList.reverseIterative(list);
+        list.reverse();
+//        SinglyLinkedList.reverseIterative(list);
         System.out.println(list.toString());
     }
 }
