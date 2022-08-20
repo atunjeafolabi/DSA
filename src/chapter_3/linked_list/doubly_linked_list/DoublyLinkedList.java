@@ -1,10 +1,13 @@
 package chapter_3.linked_list.doubly_linked_list;
 
+/**
+ * Implementation of Doubly Linked List using two sentinels/guards (i.e header and trailer) nodes.
+ */
 public class DoublyLinkedList<E> {
 
     private static class Node<E> {
 
-        private E element;                          // ref to the element stored at this node
+        private E element;                          // ref to the elemgit add ent stored at this node
         private Node<E> prev;                       // ref to the prev node in the list
         private Node<E> next;                       // ref to the subsequent node in the list
 
