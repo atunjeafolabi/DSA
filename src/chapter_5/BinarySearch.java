@@ -6,6 +6,7 @@ package chapter_5;
  * An implementation of the binary search algorithm on a sorted array using recursion.
  * Return the index of the target if found.
  * Return -1 if the target is not found
+ * Time Complexity: O(logn)
  *
  * This kind of recursion is an example of tail recursion
  */
