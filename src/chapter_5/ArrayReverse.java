@@ -1,4 +1,4 @@
-package com.dsa.recusrion;
+package chapter_5;
 
 /**
  * Code Fragment 5.7:
@@ -13,19 +13,22 @@ public class ArrayReverse {
 
         System.out.println("Original array:");
         dumpArray(ages);
+
         System.out.println("\nReversed array:");
         dumpArray(
                 reverseArray(ages, 0, arraySize - 1)
         );
     }
 
-    /** Reverses the contents of subarray data[low] through data[high] inclusive. */
+    /**
+     * Reverses the contents of subarray data[low] through data[high] inclusive.
+     */
     public static int[] reverseArray(int[ ] data, int low, int high) {
-        if (low < high) {                                           // if at least two elements in subarray
-             int temp = data[low];                                  // swap data[low] and data[high]
+        if (low < high) {                                                   // if at least two elements in subarray
+             int temp = data[low];                                          // swap data[low] and data[high]
              data[low] = data[high];
              data[high] = temp;
-             reverseArray(data, low + 1, high - 1);     // recur on the rest
+             reverseArray(data, low + 1, high - 1);             // recur on the rest
         }
 
         return data;
