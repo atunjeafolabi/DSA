@@ -1,4 +1,4 @@
-package com.dsa.recusrion;
+package chapter_5;
 
 /**
  * Code Fragments 5.8 and 5.9
