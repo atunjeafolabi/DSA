@@ -1,4 +1,4 @@
-package com.dsa.recusrion;
+package chapter_5.exercises;
 
 /**
  * R-5.7
