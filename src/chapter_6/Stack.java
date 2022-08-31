@@ -1,4 +1,4 @@
-package com.dsa.stack;
+package chapter_6;
 
 /**
  * A collection of objects that are inserted(pushed) and removed(popped) according to the LIFO principle.

@@ -1,4 +1,4 @@
-package com.dsa.stack;
+package chapter_6;
 
 import chapter_3.linked_list.singly_linked_list.SinglyLinkedList;
 

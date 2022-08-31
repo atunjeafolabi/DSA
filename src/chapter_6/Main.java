@@ -1,4 +1,4 @@
-package com.dsa.stack;
+package chapter_6;
 
 /**
  * Sample usage of the ArrayStack

@@ -1,4 +1,4 @@
-package com.dsa.stack;
+package chapter_6;
 
 import java.util.Arrays;
 
