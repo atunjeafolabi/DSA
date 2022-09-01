@@ -1,4 +1,4 @@
-package chapter_6;
+package chapter_6.stack;
 
 import chapter_3.linked_list.singly_linked_list.SinglyLinkedList;
 

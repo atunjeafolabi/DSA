@@ -1,4 +1,4 @@
-package chapter_6;
+package chapter_6.stack;
 
 /**
  * A collection of objects that are inserted(pushed) and removed(popped) according to the LIFO principle.

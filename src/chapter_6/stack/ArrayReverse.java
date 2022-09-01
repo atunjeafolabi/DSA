@@ -1,4 +1,4 @@
-package chapter_6;
+package chapter_6.stack;
 
 import java.util.Arrays;
 

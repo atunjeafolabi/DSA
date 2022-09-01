@@ -1,4 +1,4 @@
-package chapter_6;
+package chapter_6.stack;
 
 /**
  * Sample usage of the ArrayStack

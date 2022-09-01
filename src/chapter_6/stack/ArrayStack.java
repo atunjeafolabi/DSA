@@ -1,4 +1,4 @@
-package chapter_6;
+package chapter_6.stack;
 
 /**
  * Code Fragment 6.2:
