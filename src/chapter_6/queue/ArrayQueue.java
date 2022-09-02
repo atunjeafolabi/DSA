@@ -1,6 +1,4 @@
-package com.dsa.Queue.ArrayQueue;
-
-import com.dsa.Queue.Queue;
+package chapter_6.queue;
 
 /**
  * Code Fragment 6.10:
@@ -10,18 +8,18 @@ import com.dsa.Queue.Queue;
  *
  * @param <E>
  */
-public class ArrayCircularQueue<E> implements Queue<E> {
+public class ArrayQueue<E> implements Queue<E> {
 
     private static final int CAPACITY = 1000;
     private int front;                                              // index of the front element in the queue
     private int storedSize;                                         // current number of elements in the queue
     private E[] data;                                               // array used for storage
 
-    public ArrayCircularQueue() {
+    public ArrayQueue() {
         this(CAPACITY);
     }
 
-    public ArrayCircularQueue(final int capacity) {
+    public ArrayQueue(final int capacity) {
         data = (E[]) new Object[capacity];
     }
 

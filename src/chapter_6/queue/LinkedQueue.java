@@ -1,6 +1,6 @@
-package com.dsa.Queue.LinkedQueue;
+package chapter_6.queue;
 
-import com.dsa.Queue.Queue;
+import chapter_6.queue.Queue;
 import chapter_3.linked_list.singly_linked_list.SinglyLinkedList;
 
 /**

@@ -1,4 +1,4 @@
-package com.dsa.Queue;
+package chapter_6.queue;
 
 /**
  * Code Fragment 6.9:

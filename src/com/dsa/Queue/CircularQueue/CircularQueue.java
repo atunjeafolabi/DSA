@@ -1,6 +1,6 @@
 package com.dsa.Queue.CircularQueue;
 
-import com.dsa.Queue.Queue;
+import chapter_6.queue.Queue;
 
 /**
  * Code Fragment 6.12:
