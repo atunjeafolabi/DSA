@@ -1,4 +1,4 @@
-package com.dsa.Queue.CircularQueue;
+package chapter_6.queue;
 
 import chapter_6.queue.Queue;
 

@@ -1,6 +1,4 @@
-package com.dsa.Queue.CircularQueue;
-
-import com.dsa.Queue.LinkedCircularQueue.LinkedCircularQueue;
+package chapter_6.queue;
 
 /**
  * Code Fragment 6.13:
@@ -11,21 +9,25 @@ public class Josephus {
 
     /** Computes the winner of the Josephus problem using a circular queue. */
     public static <E> E Josephus(CircularQueue<E> queue, int k) {
-        if (queue.isEmpty()) return null;
+        if (queue.isEmpty()) {
+            return null;
+        }
         while (queue.size() > 1) {
-            for (int i=0; i < k-1; i++)                     // skip past k-1 elements
-                 queue.rotate();
-            E e = queue.dequeue();                          // remove the front element from the collection
+            for (int i = 0; i < k-1; i++) {                    // skip past k-1 elements
+                queue.rotate();
+            }
+            E e = queue.dequeue();                              // remove the front element from the collection
             System.out.println(" " + e + " is out");
         }
-        return queue.dequeue();                             // the winner
+        return queue.dequeue();                                 // the winner
     }
 
     /** Builds a circular queue from an array of objects. */
     public static <E> CircularQueue<E> buildQueue(E a[ ]) {
         CircularQueue<E> queue = new LinkedCircularQueue<>();
-        for (int i=0; i<a.length; i++)
+        for (int i = 0; i < a.length; i++) {
             queue.enqueue(a[i]);
+        }
         return queue;
     }
 

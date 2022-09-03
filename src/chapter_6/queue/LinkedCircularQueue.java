@@ -1,6 +1,5 @@
-package com.dsa.Queue.LinkedCircularQueue;
+package chapter_6.queue;
 
-import com.dsa.Queue.CircularQueue.CircularQueue;
 import chapter_3.linked_list.circularly_linked_list.CircularlyLinkedList;
 
 public class LinkedCircularQueue<E> implements CircularQueue<E> {
