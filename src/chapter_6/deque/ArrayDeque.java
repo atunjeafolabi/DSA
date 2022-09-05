@@ -1,6 +1,8 @@
 package chapter_6.deque;
 
 /**
+ * Problem P-6.40
+ *
  * Array-based implementation of a dequeue with a circular array that wraps around the end.
  * Modular arithmetic was used for wrapping around at the end of the array
  */
