@@ -1,4 +1,4 @@
-package com.dsa.Lists;
+package chapter_7.list;
 
 /**
  * Code Fragment 7.3, 7.4 and 7.5:
@@ -12,8 +12,8 @@ package com.dsa.Lists;
  */
 public class ArrayList<E> implements List<E> {
 
-    private static final int CAPACITY = 16;     // initial capacity of storage array
-    private int size = 0;                       // number of elements in array
+    private static final int CAPACITY = 16;                         // initial capacity of storage array
+    private int size = 0;                                           // number of elements in array
     private E[] data;
 
     public ArrayList(final int capacity) {
@@ -50,7 +50,9 @@ public class ArrayList<E> implements List<E> {
         size++;
     }
 
-    /** Resizes internal array to have given capacity >= size. */
+    /*
+     * Resizes internal array to have given capacity >= size.
+     */
     protected void resize(int capacity) {
         E[ ] temp = (E[ ]) new Object[capacity];                // safe cast; compiler may give warning
          for (int k=0; k < size; k++)
@@ -67,7 +69,7 @@ public class ArrayList<E> implements List<E> {
             data[k] = data[k+1];
         }
 
-        data[size - 1] = null;                      // help Garbage Collector
+        data[size - 1] = null;                                  // help Garbage Collector
         size--;
         return removed;
     }

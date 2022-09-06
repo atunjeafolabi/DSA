@@ -1,6 +1,6 @@
 package com.dsa.positional_list.IterableArrayList;
 
-import com.dsa.Lists.List;
+import chapter_7.list.List;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

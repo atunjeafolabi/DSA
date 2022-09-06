@@ -1,4 +1,4 @@
-package com.dsa.Lists;
+package chapter_7.list;
 
 /**
  * Code Fragment 7.1:
