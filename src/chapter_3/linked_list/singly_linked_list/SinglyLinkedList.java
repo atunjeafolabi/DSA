@@ -179,6 +179,23 @@ public class SinglyLinkedList<E> {
         }
     }
 
+    /*
+     * R-3.12
+     *
+     * Implementation of a rotate() method which has semantics equal to addLast(removeFirst()),
+     * yet without creating any new node.
+     */
+    public void rotate() {
+
+        Node<E> newHead = head.getNext();
+
+        tail.setNext(head);
+        tail = tail.getNext();
+        tail.setNext(null);
+
+        head = newHead;
+    }
+
     // As implemented in textbook bearing in mind Type erasure in java
 //    public boolean equals(Object o) {
 //        if (o == null) return false;

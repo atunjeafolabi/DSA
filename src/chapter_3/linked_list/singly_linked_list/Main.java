@@ -58,5 +58,18 @@ public class Main {
         list.reverse();
 //        SinglyLinkedList.reverseIterative(list);
         System.out.println(list.toString());
+
+        // Rotate list
+        SinglyLinkedList<Integer> numbers = new SinglyLinkedList<>();
+        numbers.addFirst(10);
+        numbers.addLast(20);
+        numbers.addLast(30);
+        numbers.addLast(40);
+
+        numbers.rotate();
+        System.out.println("Rotate number list...");
+        System.out.println("Numbers after rotating: " + numbers);
+        System.out.println("First Number: " + numbers.first());
+        System.out.println("Last Number: " + numbers.last());
     }
 }
