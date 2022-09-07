@@ -154,6 +154,64 @@ public class DoublyLinkedList<E> {
         return newList;
     }
 
+    /*
+     * R-3.16
+     */
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        DoublyLinkedList other = (DoublyLinkedList) o;
+        if (size != other.size) {
+            return false;
+        }
+
+        Node walkA = header.getNext();
+        Node walkB = other.header.getNext();
+
+        while (walkA.getNext() != null) {
+            if (!walkA.getElement().equals(walkB.getElement())) {
+                return false;
+            }
+            walkA = walkA.getNext();
+            walkB = walkB.getNext();
+        }
+
+        return true;
+    }
+
+    /**
+     * C-3.35
+     * Implementation of the clone() method
+     */
+    public DoublyLinkedList clone() throws CloneNotSupportedException {
+        DoublyLinkedList<E> other = new DoublyLinkedList<>();
+
+        if (size > 0) {
+            other.header = new Node<>(null, null, null);
+            other.trailer = new Node<>(null, other.header, null);
+            other.header.setNext(other.trailer);
+            Node<E> walk = header.getNext();
+            Node<E> otherwalk = other.header;
+
+            for (int i = 0; i < size; i++) {
+                Node<E> newest = new Node<>(walk.getElement(), otherwalk, otherwalk.getNext());
+                otherwalk.getNext().setPrev(newest);
+                otherwalk.setNext(newest);
+                otherwalk = otherwalk.getNext();
+                walk = walk.getNext();
+                other.size++;
+            }
+        }
+
+        return other;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
         Node<E> walk = header.getNext();
