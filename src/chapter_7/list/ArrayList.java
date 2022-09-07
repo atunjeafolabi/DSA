@@ -41,12 +41,13 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void add(int i, E e) throws IndexOutOfBoundsException, IllegalStateException {
         checkIndex(i);
-        if (size == data.length)                                 // Not enough capacity,
+        if (size == data.length) {                               // Not enough capacity,
             resize(2 * data.length);                    // so double the current capacity
-        for (int k=size-1; k >= i; k--)                         // start by shifting rightmost
-            data[k+1] = data[k];
+        }
+        for (int k=size-1; k >= i; k--) {                        // start by shifting rightmost
+            data[k + 1] = data[k];
+        }
         data[i] = e;                                            // ready to place the new element
-
         size++;
     }
 
@@ -55,8 +56,9 @@ public class ArrayList<E> implements List<E> {
      */
     protected void resize(int capacity) {
         E[ ] temp = (E[ ]) new Object[capacity];                // safe cast; compiler may give warning
-         for (int k=0; k < size; k++)
+         for (int k=0; k < size; k++) {
              temp[k] = data[k];
+         }
          data = temp;                                           // start using the new array
     }
 
