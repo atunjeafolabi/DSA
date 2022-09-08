@@ -1,8 +1,6 @@
 package com.dsa.positional_list.IterableLinkedPositionalList;
 
-import com.dsa.positional_list.Position;
-
-import java.util.Iterator;
+import chapter_7.positional_list.Position;
 
 public class Main {
     public static void main(String[] args){

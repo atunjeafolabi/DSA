@@ -1,4 +1,4 @@
-package com.dsa.positional_list;
+package chapter_7.positional_list;
 
 public interface PositionalList<E> extends Iterable<E>   {
 

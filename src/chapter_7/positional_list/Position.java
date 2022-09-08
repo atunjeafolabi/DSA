@@ -1,4 +1,4 @@
-package com.dsa.positional_list;
+package chapter_7.positional_list;
 
 public interface Position<E> {
 

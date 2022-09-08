@@ -1,8 +1,8 @@
 package com.dsa.positional_list.FavoritesList;
 
 import com.dsa.positional_list.IterableLinkedPositionalList.LinkedPositionalList;
-import com.dsa.positional_list.Position;
-import com.dsa.positional_list.PositionalList;
+import chapter_7.positional_list.Position;
+import chapter_7.positional_list.PositionalList;
 
 /**
  * Code Fragment 7.18:
