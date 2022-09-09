@@ -1,4 +1,4 @@
-package com.dsa.positional_list.IterableArrayList;
+package chapter_7.positional_list.IterableArrayList;
 
 import java.util.Iterator;
 

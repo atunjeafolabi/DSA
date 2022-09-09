@@ -1,4 +1,4 @@
-package com.dsa.positional_list.IterableArrayList;
+package chapter_7.positional_list.IterableArrayList;
 
 import chapter_7.list.List;
 
@@ -22,8 +22,8 @@ public class ArrayList<E> implements List<E> {
      * reference to the containing list, allowing it to access the list's members.
      */
     private class ArrayIterator implements Iterator<E> {
-        private int j = 0;                                    // index of the next element to report
-        private boolean removable = false;                    // can remove be called at this time?
+        private int j = 0;                                                          // index of the next element to report
+        private boolean removable = false;                                          // can remove be called at this time?
 
         /**
          * Tests whether the iterator has a next object.
@@ -31,8 +31,8 @@ public class ArrayList<E> implements List<E> {
          * @return true if there are further objects, false otherwise
          */
         public boolean hasNext() {
-            return j < size;
-        }        // size is field of outer instance
+            return j < size;                                                        // size is field of outer instance
+        }
 
         /**
          * Returns the next object in the iterator.
@@ -41,9 +41,11 @@ public class ArrayList<E> implements List<E> {
          * @throws NoSuchElementException if there are no further elements
          */
         public E next() throws NoSuchElementException {
-            if (j == size) throw new NoSuchElementException("No next element");
-            removable = true;                               // this element can subsequently be removed
-            return data[j++];                               // post-increment j, so it is ready for future call to next
+            if (j == size) {
+                throw new NoSuchElementException("No next element");
+            }
+            removable = true;                                                       // this element can subsequently be removed
+            return data[j++];                                                       // post-increment j, so it is ready for future call to next
         }
 
         /**
@@ -53,23 +55,25 @@ public class ArrayList<E> implements List<E> {
          * @throws IllegalStateException if remove was already called since recent next
          */
         public void remove() throws IllegalStateException {
-            if (!removable) throw new IllegalStateException("nothing to remove");
-            ArrayList.this.remove(j - 1);               // that was the last one returned
-            j--;                                           // next element has shifted one cell to the left
-            removable = false;                             // do not allow remove again until next is called
+            if (!removable) {
+                throw new IllegalStateException("nothing to remove");
+            }
+            ArrayList.this.remove(j - 1);                                            // that was the last one returned
+            j--;                                                                        // next element has shifted one cell to the left
+            removable = false;                                                          // do not allow remove again until next is called
         }
     }
 
-    public static final int CAPACITY = 16;                  // default array capacity
-    private E[] data;                                       // generic array used for storage
-    private int size = 0;                                   // current number of elements
+    public static final int CAPACITY = 16;                                              // default array capacity
+    private E[] data;                                                                   // generic array used for storage
+    private int size = 0;                                                               // current number of elements
 
     public ArrayList() {
-        this(CAPACITY);
-    }                  // constructs list with default capacity
+        this(CAPACITY);                                                                 // constructs list with default capacity
+    }
 
-    public ArrayList(int capacity) {                        // constructs list with given capacity
-        data = (E[]) new Object[capacity];                  // safe cast; compiler may give warning
+    public ArrayList(int capacity) {                                                    // constructs list with given capacity
+        data = (E[]) new Object[capacity];                                              // safe cast; compiler may give warning
     }
 
     // public methods
@@ -112,11 +116,13 @@ public class ArrayList<E> implements List<E> {
     public void add(int i, E e) throws IndexOutOfBoundsException,
             IllegalStateException {
         checkIndex(i, size + 1);
-        if (size == data.length)                                // not enough capacity
+        if (size == data.length) {                                                       // not enough capacity
             throw new IllegalStateException("Array is full");
-        for (int k = size - 1; k >= i; k--)                     // start by shifting rightmost
+        }
+        for (int k = size - 1; k >= i; k--) {                                            // start by shifting rightmost
             data[k + 1] = data[k];
-        data[i] = e;                                            // ready to place the new element
+        }
+        data[i] = e;                                                                    // ready to place the new element
         size++;
     }
 
@@ -125,9 +131,10 @@ public class ArrayList<E> implements List<E> {
      */
     public E remove(int i) throws IndexOutOfBoundsException {
         E temp = data[i];
-        for (int k = i; k < size - 1; k++)                      // shift elements to fill hole
+        for (int k = i; k < size - 1; k++) {                                              // shift elements to fill hole
             data[k] = data[k + 1];
-        data[size - 1] = null;                                  // help garbage collection
+        }
+        data[size - 1] = null;                                                          // help garbage collection
         size--;
         return temp;
     }
@@ -138,8 +145,9 @@ public class ArrayList<E> implements List<E> {
      * Checks whether the given index is in the range [0, n-1].
      */
     protected void checkIndex(int i, int n) throws IndexOutOfBoundsException {
-        if (i < 0 || i >= n)
+        if (i < 0 || i >= n) {
             throw new IndexOutOfBoundsException("Illegal index: " + i);
+        }
     }
 
     /**
