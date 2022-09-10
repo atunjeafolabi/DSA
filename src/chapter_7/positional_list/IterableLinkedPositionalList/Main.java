@@ -1,4 +1,4 @@
-package com.dsa.positional_list.IterableLinkedPositionalList;
+package chapter_7.positional_list.IterableLinkedPositionalList;
 
 import chapter_7.positional_list.Position;
 
