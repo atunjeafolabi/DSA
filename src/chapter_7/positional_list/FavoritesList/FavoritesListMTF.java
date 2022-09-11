@@ -1,4 +1,4 @@
-package com.dsa.positional_list.FavoritesList;
+package chapter_7.positional_list.FavoritesList;
 
 import chapter_7.positional_list.IterableLinkedPositionalList.LinkedPositionalList;
 import chapter_7.positional_list.Position;
