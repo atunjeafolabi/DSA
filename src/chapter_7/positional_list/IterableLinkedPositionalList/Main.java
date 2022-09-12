@@ -27,5 +27,17 @@ public class Main {
         for (Position<String> p : queueInSupermarket.positions()) {
             System.out.println(p.getElement());
         }
+
+         // Insertion sort
+        LinkedPositionalList<Integer> numbers = new LinkedPositionalList<>();
+        numbers.addFirst(1);
+        numbers.addFirst(4);
+        numbers.addFirst(9);
+        numbers.addFirst(2);
+        numbers.addFirst(3);
+        LinkedPositionalList.insertionSort(numbers);
+
+        System.out.println("Sorted numbers (first): " + numbers.first().getElement());
+        System.out.println("Sorted numbers (last): " + numbers.last().getElement());
     }
 }
