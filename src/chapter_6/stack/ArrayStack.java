@@ -1,5 +1,7 @@
 package chapter_6.stack;
 
+import java.lang.reflect.Array;
+
 /**
  * Code Fragment 6.2:
  * -----------------
@@ -144,6 +146,26 @@ public class ArrayStack<E> implements Stack<E> {
 
             System.out.println(integerStack.pop());
             System.out.println(integerStack.top());
+
+            /*
+             * C-6.17 Show how to use the transfer method, described in Exercise R-6.4, and two temporary stacks,
+             * to replace the contents of a given stack S with those same elements, but in reversed order.
+             */
+            System.out.println("===================");
+
+            ArrayStack<Integer> stack_S = new ArrayStack<>();
+            stack_S.push(3);
+            stack_S.push(2);
+            stack_S.push(1);
+
+            ArrayStack<Integer> tempStack1 = new ArrayStack<>();
+            ArrayStack<Integer> tempStack2 = new ArrayStack<>();
+
+            ArrayStack.transfer(stack_S, tempStack1);
+            ArrayStack.transfer(tempStack1, tempStack2);
+            ArrayStack.transfer(tempStack2, stack_S);
+
+            System.out.println("Reversed order: " + stack_S.toString());;
         }
     }
 }
