@@ -37,4 +37,15 @@ public class LinkedStack<E> implements Stack<E> {
     public boolean isEmpty() {
         return list.isEmpty();
     }
+
+    @Override
+    public String toString() {
+        String str = "";
+        while (size() != 0) {
+            str = str + " " + pop() + ", ";
+        }
+
+        return str;
+    }
+
 }
