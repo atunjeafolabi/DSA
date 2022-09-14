@@ -13,7 +13,7 @@ public class LinkedCircularQueue<E> implements CircularQueue<E> {
 
     @Override
     public void enqueue(E element) {
-        list.addFirst(element);
+        list.addLast(element);
     }
 
     @Override
