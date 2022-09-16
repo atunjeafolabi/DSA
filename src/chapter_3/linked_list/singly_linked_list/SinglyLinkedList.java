@@ -196,6 +196,22 @@ public class SinglyLinkedList<E> {
         head = newHead;
     }
 
+    /*
+     * Actually, removeLast() was not implemented in the textbook.
+     * But it is necessary to be implemented in order to solve LinkedLeakyStack problem of P-6.39
+     */
+    public void removeLast() {
+        Node<E> pointer = head;
+        Node<E> prev = null;
+        while(pointer.getNext() != null) {
+            prev = pointer;
+            pointer = pointer.getNext();
+        }
+        prev.setNext(null);                     // For the second to the last node, set next to null
+        tail = prev;                            // Assign the tail of the list to the second to the last node
+        size--;
+    }
+
     // As implemented in textbook bearing in mind Type erasure in java
 //    public boolean equals(Object o) {
 //        if (o == null) return false;
