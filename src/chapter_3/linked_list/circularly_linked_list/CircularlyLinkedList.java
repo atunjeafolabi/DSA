@@ -89,4 +89,116 @@ public class CircularlyLinkedList<E> {
 
         return head.getElement( );
     }
+
+    /*
+     * R-3.15
+     *
+     * Implement the equals() method for the CircularlyLinkedList class, assuming that two lists are equal if they
+     * have the same sequence of elements, with corresponding elements currently at the front of the list.
+     */
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        CircularlyLinkedList other = (CircularlyLinkedList) o;
+        if (size != other.size) {
+            return false;
+        }
+
+        Node walkA = tail;
+        Node walkB = other.tail;
+
+        for (int i = 0; i < size; i++) {
+            if (!walkA.getElement().equals(walkB.getElement())) {
+                return false;
+            }
+
+            walkA = walkA.getNext();
+            walkB = walkB.getNext();
+        }
+
+        return true;
+    }
+
+    /**
+     * C-3.34
+     *
+     * Implementation of the clone() method.
+     */
+    public CircularlyLinkedList clone() throws CloneNotSupportedException {
+        CircularlyLinkedList other = new CircularlyLinkedList();
+
+        if (size > 0) {
+            other.tail = new Node(tail.getElement(), null);
+            Node<E> walk = tail.getNext();
+            Node<E> temp = other.tail;
+
+            for (int i = 0; i < size; i++) {
+                /*
+                 * when the second to the last element of the new (i.e cloned) list is reached,
+                 * set its next to the tail
+                */
+                if (i == size-1) {
+                    temp.setNext(other.tail);
+                    other.size++;
+                    break;
+                }
+
+                Node<E> newest = new Node<>(walk.getElement(), null);
+                temp.setNext(newest);
+                temp = newest;
+                walk = walk.getNext();
+                other.size++;
+            }
+        }
+        return other;
+    }
+
+    /*
+     * C-3.29
+     *
+     * Suppose you are given two circularly linked lists, L and M. Describe an algorithm for telling if L and M
+     * store the same sequence of elements (but perhaps with different starting points).
+     */
+//    public static boolean isSameSequenceOfElements(CircularlyLinkedList listL, CircularlyLinkedList listM) {
+//        Node walkL = listL.tail.getNext();
+//        Node walkM = listM.tail.getNext();
+//
+//        // TODO:check if list are also of same length
+//
+//        while (walkL != listL.tail) {
+//            if (listL.tail.getNext().getElement().equals(walkM.getElement())) {
+//                listM.tail = walkM;
+//            }
+//
+//            if (!walkL.getElement().equals(walkM.getElement())) {
+//                return false;
+//            }
+//
+//            walkL = walkL.getNext();
+//            walkM = walkM.getNext();
+//        }
+//
+//        return true;
+//    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Node<E> walk = tail.getNext();
+
+        while (walk != tail) {
+            sb.append(walk.getElement());
+            sb.append(", ");
+            walk = walk.getNext();
+        }
+        sb.append(walk.getElement());
+        sb.append("]");
+
+        return sb.toString();
+    }
 }
