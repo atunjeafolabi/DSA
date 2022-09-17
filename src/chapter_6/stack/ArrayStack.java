@@ -1,6 +1,6 @@
 package chapter_6.stack;
 
-import java.lang.reflect.Array;
+import chapter_3.Person;
 
 /**
  * Code Fragment 6.2:
@@ -9,7 +9,7 @@ import java.lang.reflect.Array;
  *
  * @param <E>
  */
-public class ArrayStack<E> implements Stack<E> {
+public class ArrayStack<E> implements Stack<E>, Cloneable {
 
     private static final int CAPACITY = 1000;
     private int top = -1;
@@ -108,6 +108,38 @@ public class ArrayStack<E> implements Stack<E> {
         return str;
     }
 
+    /*
+     * C-6.27
+     *
+     * MAYBE TODO: Each element of the array (i.e data[i]) should also be cloned to make them distinct (for object elements)
+     * in the new stack, but data[i].clone() gives error. A workaround is needed to make this work!
+     *
+     * But really, the cloning of the array elements may not actually be necessary! Yea, really!
+     * The implementation below for clone may just be alright; with both arrays of original and
+     * newly cloned stack pointing to thesame reference elements!
+     *
+     * This stackoverflow link helps with further understanding
+     * https://stackoverflow.com/questions/51516005/effective-java-claims-that-elements-clone-suffices
+     */
+
+    public ArrayStack<E> clone() {
+        ArrayStack<E> clonedStack = null;
+        try {
+            clonedStack = (ArrayStack<E>) super.clone();                       // shallow clone
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        clonedStack.data = data.clone();                                       // clone reference array variable "data"
+        /*
+         * clone each element of array, data, and
+         * re-assign it to data of clonedStack
+         */
+//        for (int i = 0; i < data.length; i++) {
+//            clonedStack.data[i] = data[i].clone();
+//        }
+        return clonedStack;
+    }
+
     /**
      * Sample usage of the ArrayStack
      */
@@ -165,7 +197,39 @@ public class ArrayStack<E> implements Stack<E> {
             ArrayStack.transfer(tempStack1, tempStack2);
             ArrayStack.transfer(tempStack2, stack_S);
 
-            System.out.println("Reversed order: " + stack_S.toString());;
+            System.out.println("Reversed order: " + stack_S.toString());
+
+            // test clone method
+            System.out.println("===================");
+            Person olayinka = new Person("Olayinka", 22);
+            Person segun = new Person("Segun", 25);
+            Person lola = new Person("Lola", 18);
+            Person bill = new Person("Bill", 30);
+
+            ArrayStack<Person> names = new ArrayStack<>(10);
+            names.push(olayinka);
+            names.push(segun);
+            names.push(lola);
+
+            ArrayStack<Person> clonedNames = names.clone();
+
+            /*
+             * add one more entry to clonedNames to confirm
+             * that it does not affect the original stack
+             */
+            clonedNames.push(bill);
+
+            /*
+             * Also, modifying olayinka object will also affect both clonedNames and the original names
+             * because their storage arrays still reference the same 'olayinka' Person object.
+             */
+            olayinka.setName("Faith");
+
+            System.out.println("Size of clonedNames: " + clonedNames.size());
+            System.out.println("Size of names: " + names.size());
+
+            System.out.println(clonedNames.toString());
+
         }
     }
 }
