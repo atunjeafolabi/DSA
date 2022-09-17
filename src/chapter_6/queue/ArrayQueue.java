@@ -34,7 +34,9 @@ public class ArrayQueue<E> implements Queue<E> {
         storedSize++;
     }
 
-    /** Removes and returns the first element of the queue (null if empty). */
+    /*
+     * Removes and returns the first element of the queue (null if empty).
+     */
     @Override
     public E dequeue() {
         if (isEmpty()) {
@@ -58,7 +60,9 @@ public class ArrayQueue<E> implements Queue<E> {
         return storedSize == 0;
     }
 
-    /** Returns, but does not remove, the first element of the queue (null if empty). */
+    /*
+     * Returns, but does not remove, the first element of the queue (null if empty).
+     */
     @Override
     public E first() {
         if (isEmpty()) {
@@ -66,5 +70,23 @@ public class ArrayQueue<E> implements Queue<E> {
         }
 
         return data[front];
+    }
+
+    /**
+     * C-6.28
+     *
+     * Similar to C-6.27 for ArrayStack
+     */
+    public ArrayQueue<E> clone() {
+        ArrayQueue<E> clonedQueue = null;
+        try {
+            clonedQueue = (ArrayQueue<E>) super.clone();                      // first create a shallow copy
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        clonedQueue.data = data.clone();
+
+        return clonedQueue;
     }
 }
