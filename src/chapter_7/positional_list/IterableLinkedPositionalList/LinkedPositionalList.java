@@ -238,6 +238,20 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         return addBetween(e, trailer.getPrev(), trailer);                           // just before the trailer
     }
 
+    /**
+     * R-7.11
+     *
+     * Alternative implementation of addLast()
+     *
+     * Describe an implementation of the positional list methods addLast and addBe-fore realized by using only methods
+     * in the set {isEmpty, first, last, before, after, addAfter, addFirst}.
+     */
+    public Position addLastAlt(E e) {
+        Node<E> lastNode = validate(last());
+
+        return addAfter(lastNode, e);
+    }
+
     /*
      * Inserts element e immediately before Position p, and returns its new Position.
      */
@@ -248,6 +262,15 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         return addBetween(e, node.getPrev(), node);
     }
 
+    /**
+     * R-7.11
+     *
+     * Alternative implementation of addBefore()
+     */
+    public Position<E> addBeforeAlt(Position<E> p, E e) throws IllegalStateException {
+        Node nodeBeforeP = validate(before(p));
+        return addAfter(nodeBeforeP, e);
+    }
     /*
      * Inserts element e immediately after Position p, and returns its new Position.
      */
