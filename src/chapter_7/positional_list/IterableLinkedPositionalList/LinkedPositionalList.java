@@ -329,4 +329,44 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
             }
         }
     }
+
+    /*
+     * R-7.12
+     *
+     * Suppose we want to extend the PositionalList abstract data type with a method, indexOf(p), that returns the
+     * current index of the element stored at position p. Show how to implement this method using only other
+     * methods of the Positional-List interface (not details of our LinkedPositionalList implementation).
+     */
+    @Override
+    public int indexOf(Position<E> p) throws IllegalArgumentException {
+        Node<E> nodeP = validate(p);
+        Node<E> walk = validate(first());
+        for (int i = 0; i < size(); i++) {
+            if (nodeP == walk) {
+                return i;
+            }
+            walk = walk.getNext();
+        }
+        return -1;
+    }
+
+    /*
+     * R-7.13
+     *
+     * Suppose we want to extend the PositionalList abstract data type with a method, ﬁndPosition(e), that returns the
+     * first position containing an element equal to e (or null if no such position exists). Show how to implement
+     * this method using only existing methods of the PositionalList interface
+     * (not details of our LinkedPositionalList implementation).
+     */
+    @Override
+    public Position<E> findPosition(E e) {
+        Node<E> walk = (Node) first();
+        for (int i = 0; i < size(); i++) {
+            if (walk.getElement() == e) {
+                return position(walk);
+            }
+            walk = walk.getNext();
+        }
+        return null;
+    }
 }
