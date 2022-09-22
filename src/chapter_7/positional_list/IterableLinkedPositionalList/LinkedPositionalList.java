@@ -53,8 +53,25 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
     private class PositionIterator implements Iterator<Position<E>> {
 
-        private Position<E> cursor = first();                                       // position of the next element to report
+        private String oddOrEven;
+        private Position<E> cursor;                                       // position of the next element to report
         private Position<E> recent = null;                                          // position of last reported element
+
+        PositionIterator() {
+            this.cursor = first();
+        }
+
+        PositionIterator(String oddOrEvenIndex) {
+            this.oddOrEven = oddOrEvenIndex;
+
+            if (oddOrEvenIndex == "odd") {
+                this.cursor = first();
+            }
+
+            if (oddOrEvenIndex == "even") {
+                this.cursor = after(first());
+            }
+        }
 
         @Override
         public boolean hasNext() {
@@ -69,6 +86,12 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
             recent = cursor;
             cursor = after(cursor);
+
+            // i.e next after next if alternateIterator is odd or even
+            if (oddOrEven != null && cursor != null) {
+                cursor = after(cursor);
+            }
+
             return recent;
         }
 
@@ -103,7 +126,15 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      */
     private class ElementIterator implements Iterator<E> {
 
-        Iterator<Position<E>> positionIterator = new PositionIterator();
+        Iterator<Position<E>> positionIterator;
+
+        public ElementIterator() {
+            positionIterator = new PositionIterator();
+        }
+
+        public ElementIterator(String oddOrEvenIndex) {
+            positionIterator = new PositionIterator(oddOrEvenIndex);
+        }
 
         @Override
         public boolean hasNext() {
@@ -126,6 +157,16 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      */
     public Iterator<E> iterator() {
         return new ElementIterator();
+    }
+
+    /*
+     * R-7.16
+     *
+     * Describe how to implement a method, alternateIterator(), for a positional list that returns an
+     * iterator that reports only those elements having even index in the list.
+     */
+    public Iterator<E> alternateIterator() {
+        return new ElementIterator("even");                     // argument can be even, odd or nothing
     }
 
     // instance variables of the LinkedPositionalList
