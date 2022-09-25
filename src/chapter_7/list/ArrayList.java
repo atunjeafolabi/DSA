@@ -1,5 +1,9 @@
 package chapter_7.list;
 
+import chapter_3.Person;
+
+import java.util.Arrays;
+
 /**
  * Code Fragment 7.3, 7.4 and 7.5:
  * ------------------------------
@@ -149,6 +153,32 @@ public class ArrayList<E> implements List<E> {
 //        temp = null;            // GC helper
 //    }
 
+    /*
+     * R-7.18
+     *
+     * The java.util.Collection interface includes a method, contains(o), that returns true if the collection contains
+     * any object that equals Object o. Implement such a method in the ArrayList class of Section 7.2.
+     */
+    public boolean contains(Object o) {
+        for (int i = 0; i < size(); i++) {
+            if (o.equals(get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * R-7.19
+     *
+     * The java.util.Collection interface includes a method, clear(), that removes all elements from a collection.
+     * Implement such a method in the ArrayList class of Section 7.2.
+     */
+    public void clear() {
+        size = 0;
+        Arrays.fill(data, null);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
@@ -182,6 +212,15 @@ public class ArrayList<E> implements List<E> {
 
         System.out.println(list1.toString());
 
+        Person segun = new Person("Segun", 20);
+        Person deji = new Person("Deji", 30);
+        Person john = new Person("john", 30);
 
+        List<Person> people = new ArrayList<>();
+        people.add(0, segun);
+        people.add(1, deji);
+
+        boolean containsName = ((ArrayList<Person>) people).contains(deji);
+        System.out.println(containsName);
     }
 }
