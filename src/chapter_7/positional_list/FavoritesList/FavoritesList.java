@@ -15,6 +15,7 @@ package chapter_7.positional_list.FavoritesList;
 import chapter_7.positional_list.IterableLinkedPositionalList.LinkedPositionalList;
 import chapter_7.positional_list.Position;
 import chapter_7.positional_list.PositionalList;
+import org.w3c.dom.Node;
 
 import java.util.Iterator;
 
@@ -133,5 +134,19 @@ public class FavoritesList<E> {
             result.addLast(iter.next().getValue());
         }
         return result;
+    }
+
+    /**
+     * R-7.24
+     *
+     * Implement a resetCounts() method for the FavoritesList class that resets all elements’
+     * access counts to zero (while leaving the order of the list unchanged).
+     */
+    public void resetCounts() {
+        Position<Item<E>> walk = list.first();
+        for (int i = 0; i < size(); i++) {
+            walk.getElement().count = 0;
+            walk = list.after(walk);
+        }
     }
 }
