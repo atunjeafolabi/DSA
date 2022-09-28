@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @param <E>
  */
-public class ArrayList<E> implements List<E> {
+public class ArrayList<E> implements List<E>, Cloneable {
 
     private static final int CAPACITY = 16;                         // initial capacity of storage array
     private int size = 0;                                           // number of elements in array
@@ -179,6 +179,27 @@ public class ArrayList<E> implements List<E> {
         Arrays.fill(data, null);
     }
 
+    /**
+     * C-7.27
+     *
+     * Modify our ArrayList implementation to support the Cloneable interface,
+     * as described in Section 3.6.
+     */
+    @Override
+    public ArrayList<E> clone() {
+
+        ArrayList<E> cloned = null;                                         // shallow copy
+        try {
+            cloned = (ArrayList<E>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        cloned.data = data.clone();                                         // also clone reference array variable "data"
+
+        return cloned;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
@@ -222,5 +243,21 @@ public class ArrayList<E> implements List<E> {
 
         boolean containsName = ((ArrayList<Person>) people).contains(deji);
         System.out.println(containsName);
+
+        // clone test
+        System.out.println("=== clone ===");
+        ArrayList<String> list2 = new ArrayList<>();
+        list2.add(0, "Adam");
+        list2.add(1, "Eve");
+        list2.add(2, "Cain");
+        list2.add(3, "Abel");
+
+        ArrayList<String> clonedList2 = list2.clone();
+
+        list2.add(4, "Aaron");
+        clonedList2.remove(1);
+
+        System.out.println("list2: " + list2);
+        System.out.println("clonedList2: " + clonedList2);
     }
 }
