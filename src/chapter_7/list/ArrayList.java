@@ -64,15 +64,15 @@ public class ArrayList<E> implements List<E>, Cloneable {
      * Resizes internal array to have given capacity >= size.
      */
     protected void resize(int capacity, int indexToSkip) {
-        E[ ] temp = (E[ ]) new Object[capacity];                // safe cast; compiler may give warning
+        E[ ] temp = (E[ ]) new Object[capacity];                    // safe cast; compiler may give warning
          for (int k=0; k < size; k++) {
-             if (k >= indexToSkip) {
+             if (k >= indexToSkip && indexToSkip != -1) {
                  temp[k+1] = data[k];
                  continue;
              }
              temp[k] = data[k];
          }
-         data = temp;                                           // start using the new array
+         data = temp;                                               // start using the new array
     }
 
     @Override
@@ -84,8 +84,14 @@ public class ArrayList<E> implements List<E>, Cloneable {
             data[k] = data[k+1];
         }
 
-        data[size - 1] = null;                                  // help Garbage Collector
+        data[size - 1] = null;                                      // help Garbage Collector
         size--;
+
+        // C-7.29
+        if (size() < data.length / 4) {
+            resize(data.length / 2, -1);        // indexToSkip = -1 (i.e don't skip any index)
+        }
+
         return removed;
     }
 
@@ -97,6 +103,10 @@ public class ArrayList<E> implements List<E>, Cloneable {
     @Override
     public boolean isEmpty() {
         return this.size == 0;
+    }
+
+    public int getCapacity() {
+        return data.length;
     }
 
     protected void checkIndex(int i) {
@@ -259,5 +269,24 @@ public class ArrayList<E> implements List<E>, Cloneable {
 
         System.out.println("list2: " + list2);
         System.out.println("clonedList2: " + clonedList2);
+
+        /*
+         * C-7.29
+         *
+         * Revise the array list implementation given in Section 7.2.1 so that when the actual
+         * number of elements, n, in the array goes below N/4, where N is the array capacity,
+         * the array shrinks to half its size.
+         */
+        System.out.println("=== C-7.29 ===");
+        ArrayList<Integer> list3 = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            list3.add(i, i*5);
+        }
+        System.out.println("Initial List Size: " + list3.size());
+        int i = 0;
+        while (!list3.isEmpty()) {
+            list3.remove(list3.size() - 1);
+            System.out.println(list3.getCapacity());
+        }
     }
 }
