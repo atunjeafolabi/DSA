@@ -1,4 +1,4 @@
-package com.dsa;
+package chapter_5;
 
 /**
  *  Code Fragment 5.16:
