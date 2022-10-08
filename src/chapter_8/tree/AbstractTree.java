@@ -1,5 +1,8 @@
 package chapter_8.tree;
 
+import chapter_6.queue.LinkedQueue;
+import chapter_6.queue.Queue;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -89,7 +92,8 @@ public abstract class AbstractTree<E> implements Tree<E> {
     }
 
     /*
-     * @return an iterable collection of positions of the tree, reported in preorder.
+     * @return an iterable collection of positions of the tree,
+     * reported in preorder.
      */
     public Iterable<Position<E>> preorder() {
         List<Position<E>> snapshot = new ArrayList<>();                             // i.e snapshot of 'visited' nodes
@@ -110,7 +114,8 @@ public abstract class AbstractTree<E> implements Tree<E> {
     }
 
     /*
-     * Returns an iterable collection of positions of the tree, reported in postorder.
+     * Returns an iterable collection of positions of the tree,
+     * reported in postorder.
      */
     public Iterable<Position<E>> postorder() {
         List<Position<E>> snapshot = new ArrayList<>();
@@ -127,6 +132,30 @@ public abstract class AbstractTree<E> implements Tree<E> {
         for (Position<E> c : children(p)) {
             postorderSubtree(c, snapshot);
         }
-        snapshot.add(p);                                                           // for postorder, we add position p after exploring subtrees
+        snapshot.add(p);                                    // for postorder, we add position p after exploring subtrees
+    }
+
+    /**
+     * Returns an iterable collection of positions of
+     * the tree in breadth-first order.
+     */
+    public Iterable<Position<E>> breadthFirst() {
+        List<Position<E>> snapshot = new ArrayList<>();
+
+        if (!isEmpty()) {
+            Queue<Position<E>> fringe = new LinkedQueue<>();
+            fringe.enqueue(root());
+
+            while (!fringe.isEmpty()) {
+                Position<E> position = fringe.dequeue();
+                snapshot.add(position);
+
+                for (Position<E> child : children(position)) {
+                    fringe.enqueue(child);
+                }
+            }
+        }
+
+        return snapshot;
     }
 }
