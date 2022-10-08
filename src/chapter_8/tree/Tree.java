@@ -1,5 +1,7 @@
 package chapter_8.tree;
 
+import java.util.Iterator;
+
 /**
  * Code Fragment 8.1:
  * -----------------
@@ -28,7 +30,7 @@ public interface Tree<E> extends Iterable<E> {
 
     boolean isEmpty();
 
-//    Iterator<E> iterator();
+    Iterator<E> iterator();
 
     Iterable<Position<E>> positions();
 }
