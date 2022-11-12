@@ -410,4 +410,56 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         }
         return null;
     }
+
+    /**
+     * C-7.36
+     *
+     * Suppose we want to extend the PositionalList interface to include a method, positionAtIndex(i), that returns the
+     * position of the element having index i (or throws an IndexOutOfBoundsException, if warranted). Show how to
+     * implement this method, using only existing methods of the PositionalList interface,
+     * by traversing the appropriate number of steps from the front of the list.
+     *
+     */
+    public Position positionAtIndex(int i) {
+
+        if (i < 0 || i >= size()) {
+            throw new IndexOutOfBoundsException(" Invalid index");
+        }
+
+        Position t = first();
+        for (int k = 0; k < i; k++) {
+            t = after(t);
+        }
+
+        return t;
+    }
+
+    /**
+     * C-7.37
+     *
+     * Alternative method to C-7.36
+     *
+     * Repeat the previous problem, but use knowledge of the size of the list to
+     * traverse from the end of the list that is closest to the desired index.
+     */
+    public Position positionAtIndex2(int i) {
+        if (i < 0 || i >= size()) {
+            throw new IndexOutOfBoundsException(" Invalid index");
+        }
+
+        Position t;
+        if(i < size() / 2) {
+            t = first();
+            for (int k = 0; k < i; k++) {
+                t = after(t);
+            }
+        } else {
+            t = last();
+            for (int k = size() - 1; k > i; k--) {
+                t = before(t);
+            }
+        }
+
+        return t;
+    }
 }

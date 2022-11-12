@@ -75,6 +75,8 @@ public interface PositionalList<E> extends Iterable<E>   {
 
     Position<E> findPosition(E e);
 
+    Position<E> positionAtIndex(int i);
+
     int size();
 
     boolean isEmpty();
