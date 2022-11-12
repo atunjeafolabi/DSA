@@ -462,4 +462,38 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         return t;
     }
+
+    /**
+     * C-7.39
+     *
+     * Suppose we want to extend the PositionalList abstract data type with a method, moveToFront(p), that moves the
+     * element at position p to the front of a list (if not already there), while keeping the relative order of the
+     * remaining elements un-changed. Show how to implement this method using only existing methods of the
+     * PositionalList interface (not details of our LinkedPositionalList implementation).
+     */
+    public void moveToFront(Position<E> p) {
+        if (indexOf(p) > 0) {
+            E e = remove(p);
+            addFirst(e);
+        }
+    }
+
+    /**
+     * C-7.40
+     *
+     * Redo the previous problem, but providing an implementation within the
+     * class LinkedPositionalList that does not create or destroy any nodes.
+     */
+    public void moveToFrontAlt(Position p) {
+        Node<E> node = validate(p);
+
+        if (node != first()) {
+            node.getPrev().setNext(node.getNext());
+            node.getNext().setPrev(node.getPrev());
+            header.getNext().setPrev(node);
+            node.setNext(header.getNext());
+            header.setNext(node);
+            node.setPrev(header);
+        }
+    }
 }
