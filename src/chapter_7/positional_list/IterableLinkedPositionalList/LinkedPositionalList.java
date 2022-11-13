@@ -496,4 +496,52 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
             node.setPrev(header);
         }
     }
+
+    /**
+     * C-7.44
+     *
+     * Describe a method for performing a card shuffle of a list of 2n elements, by converting it into two lists.
+     * A card shuffle is a permutation where a list L is cut into two lists, L 1 and L 2 , where L 1 is the first
+     * half of L and L 2 is the second half of L, and then these two lists are merged into one by taking the
+     * first element in L 1 , then the first element in L 2 , followed by the second element in L 1 ,
+     * the second element in L 2 , and so on.
+     */
+    public LinkedPositionalList<E> cardShuffle(LinkedPositionalList<E> L) {
+        LinkedPositionalList<E> L1 = new LinkedPositionalList<>();
+        LinkedPositionalList<E> L2 = new LinkedPositionalList<>();
+
+        int size = L.size;
+
+        for (int i = 0; i < size / 2; i++) {
+            L1.addLast(L.remove(L.first()));
+        }
+
+        for (int i = 0; i < size / 2; i++) {
+            L2.addLast(L.remove(L.first()));
+        }
+
+        System.out.println("List L1: " + L1.toString());
+        System.out.println("List L2: " + L2.toString());
+
+        while (L1.size > 0 && L2.size > 0) {
+            L.addLast(L1.remove(L1.first()));
+            L.addLast(L2.remove(L2.first()));
+        }
+
+        return L;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder("(");
+        Node<E> walk = header.getNext();
+        while (walk != trailer) {
+            sb.append(walk.getElement());
+            walk = walk.getNext();
+            if (walk != trailer)
+                sb.append(", ");
+        }
+        sb.append(")");
+        return sb.toString();
+    }
+
 }
