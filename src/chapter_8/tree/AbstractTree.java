@@ -45,19 +45,57 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     /**
      * Returns the height of the tree. This approach of getting the height of
-     * a tree is NOT efficient. It works, but quadratic worst-case time.
+     * a tree is NOT efficient. It works, but quadratic worst-case time, O(n2).
      */
     private int heightBad() {
 
         int h = 0;
 
         for (Position<E> p : positions()) {
-            if (isExternal(p)) {                // only consider leaf positions
+            if (isExternal(p)) {                                                // only consider leaf positions
                 h = Math.max(h, depth(p));
             }
         }
 
         return h;
+    }
+
+    /*
+     * Returns the height of the subtree rooted at Position p.
+     * exactly as defined in the textbook.
+     *
+     * Running time:    O(n)
+     *
+     * If the method is initially called on the root of T, it will eventually
+     * be called once for each position of T.  This is because the root
+     * eventually invokes the recursion on each of its children, which
+     * in turn invokes the recursion on each of their children,
+     * and so on.
+     */
+    public int height(Position<E> p) {
+        int h = 0;                                                  // base case if p is external
+
+        for (Position<E> c : children(p)) {
+            h = Math.max(h, 1 + height(c));
+        }
+
+        return h;
+    }
+
+    /**
+     * This definition appears easier to reason about than the
+     * definition of height above, though they look very similar.
+     *
+     * Running time:    O(n)
+     */
+    public int height2(Position<E> p) {
+        int h = 0;
+
+        for (Position<E> c : children(p)) {
+            h = Math.max(h, height(c));
+        }
+
+        return 1 + h;
     }
 
     /**
@@ -158,4 +196,48 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
         return snapshot;
     }
+
+    /**
+     * Prints all elements of tree without indentation
+     */
+    public void printPreorder(AbstractTree<E> T) {
+        for (Position<E> p : T.preorder()) {
+            System.out.println(p.getElement());
+        }
+    }
+
+//    /*
+//     * Prints all elements of tree with indentation
+//     * This runs in O(n2) worst-case time but there is a better way that runs in O(n)
+//     */
+//    public static void printPreorderIndent(Tree<E> T) {
+//        for (Position<E> p : T.preorder()) {
+//            System.out.println(p.getElement());
+//            System.out.println(spaces(2*T.depth(p)) + p.getElement());
+//        }
+//    }
+
+    /**
+     * Code Fragment 8.23
+     *
+     * Efficient recursion for printing indented version of a pre-order traversal.
+     * Prints preorder representation of subtree of T rooted at p having depth d.
+     * This runs in O(n)
+     *
+     * To print an entire tree T, the recursion should be started with
+     * form printPreorderIndent(T, T.root(), 0).
+     */
+    public static <E> void printPreorderIndent(Tree<E> T, Position<E> p, int d) {
+
+        System.out.println(spaces(2*d) + p.getElement());                             // indent based on d
+
+        for (Position<E> c : T.children(p)) {
+            printPreorderIndent(T, c, d+1);                                             // child depth is d+1
+        }
+    }
+
+    private static String spaces(int times) {
+        return " ".repeat(times);
+    }
+
 }
