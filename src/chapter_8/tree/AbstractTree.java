@@ -143,6 +143,8 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     /*
      * Adds positions of the subtree rooted at Position p to the given snapshot.
+     *
+     * Running Time:    O(n)
      */
     private void preorderSubtree(Position<E> p, List<Position<E>> snapshot) {
         snapshot.add(p);
@@ -165,6 +167,8 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     /*
      * Adds positions of the subtree rooted at Position p to the given snapshot.
+     *
+     * Running Time:    O(n)
      */
     private void postorderSubtree(Position<E> p, List<Position<E>> snapshot) {
         for (Position<E> c : children(p)) {
