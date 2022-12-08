@@ -210,16 +210,19 @@ public abstract class AbstractTree<E> implements Tree<E> {
         }
     }
 
-//    /*
-//     * Prints all elements of tree with indentation
-//     * This runs in O(n2) worst-case time but there is a better way that runs in O(n)
-//     */
-//    public static void printPreorderIndent(Tree<E> T) {
-//        for (Position<E> p : T.preorder()) {
-//            System.out.println(p.getElement());
-//            System.out.println(spaces(2*T.depth(p)) + p.getElement());
-//        }
-//    }
+    /*
+     * Prints all elements of tree with indentation
+     * This runs in O(n2) worst-case time but there is a better way that runs in O(n)
+     */
+    /*
+
+    public static void printPreorderIndent(Tree<E> T) {
+        for (Position<E> p : T.preorder()) {
+            System.out.println(p.getElement());
+            System.out.println(spaces(2*T.depth(p)) + p.getElement());
+        }
+
+    }*/
 
     /**
      * Code Fragment 8.23
@@ -244,4 +247,67 @@ public abstract class AbstractTree<E> implements Tree<E> {
         return " ".repeat(times);
     }
 
+    /*
+     * Prints labeled representation of subtree of T rooted at p having depth d.
+     *
+     * For the whole tree, supply parameters: p equal to root(), and use empty instance of ArrayList for path
+     * i.e printPreorderLabeled(T, T.root(), arrayList)
+    */
+    public static <E> void printPreorderLabeled(Tree<E> T, Position<E> p, ArrayList<Integer> path) {
+        int d = path.size();                                // depth equals the length of the path
+
+        System.out.print(spaces(2*d));               // print indentation, then label
+        for (int j=0; j < d; j++) {
+            System.out.print(path.get(j) + (j == d-1 ? " " : "."));
+        }
+        System.out.println(p.getElement());
+
+        path.add(1);                                        // add path entry for first child
+        for (Position<E> c : T.children(p)) {
+            printPreorderLabeled(T, c, path);
+            path.set(d, 1 + path.get(d));                   // increment last entry of path
+        }
+
+        path.remove(d);                                     // restore path to its incoming state
+    }
+
+    /*
+     * Code Fragment 8.25:
+     *
+     * Recursive computation of disk space for a tree. (this is a postorder traversal)
+     * We assume that each tree element reports the local space used at that position.
+     */
+    /*
+
+    public static int diskSpace(Tree<Integer> T, Position<Integer> p) {
+        int subtotal = p.getElement();                      // we assume element represents space usage
+
+        for (Position<Integer> c : T.children(p)) {
+            subtotal += diskSpace(T, c);
+        }
+        return subtotal;
+    }
+
+    */
+
+
+    /*
+     * Code Fragment 8.26:
+     *
+     * Method that prints parenthetic string representation of a tree.
+     * (this is a preorder traversal)
+     */
+    public static <E> void parenthesize(Tree<E> T, Position<E> p) {
+        System.out.print(p.getElement());
+
+        if (T.isInternal(p)) {
+            boolean firstTime = true;
+            for (Position<E> c : T.children(p)) {
+                System.out.print((firstTime ? " (" : ", "));                         // determine proper punctuation
+                firstTime = false;                                                   // any future passes will get comma
+                parenthesize(T, c);                                                  // recur on child
+            }
+            System.out.print(")");
+        }
+    }
 }
