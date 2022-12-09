@@ -227,4 +227,33 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
         return removedElement;
     }
+
+    /**
+     * Utility wrapper function to count all left leaves in
+     * the entire tree
+     */
+    public int countLeftLeavesOfEntireTree() {
+        return countLeftLeaves(root());
+    }
+
+    /**
+     * R-8.5
+     *
+     * Describe an algorithm, relying only on the BinaryTree operations,
+     * that counts the number of leaves in a binary tree that are the
+     * left child of their respective parent.
+     */
+    public int countLeftLeaves(Position<E> p) {
+        int count = 0;
+
+        for(Position<E> c : children(p)) {
+            if(c == left(p) && isExternal(c)) {
+                count += 1;
+            }
+            count += countLeftLeaves(c);
+        }
+
+        return count;
+    }
+
 }
