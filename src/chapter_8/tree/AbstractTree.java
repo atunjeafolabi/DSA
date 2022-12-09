@@ -310,4 +310,34 @@ public abstract class AbstractTree<E> implements Tree<E> {
             System.out.print(")");
         }
     }
+
+    /**
+     * Euler tour of the entire tree
+     */
+    public Iterable<Position<E>> eulerTour() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        eulerTourSubtree(root(), snapshot);
+
+        return snapshot;
+    }
+
+    /**
+     * Algorithm eulerTour for performing an Euler tour traversal
+     * of a subtree rooted at position p of a tree.
+     *
+     * It is a simple combination of pre-order and post-order
+     *
+     * Running Time:    O(n)
+     */
+    private void eulerTourSubtree(Position<E> p, List<Position<E>> snapshot) {
+        // perform pre-visit action
+        snapshot.add(p);
+
+        for(Position<E> c : children(p)) {
+            eulerTourSubtree(c, snapshot);
+        }
+
+        // perform post-visit action
+        snapshot.add(p);
+    }
 }

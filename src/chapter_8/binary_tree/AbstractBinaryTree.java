@@ -53,6 +53,18 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
     }
 
     /*
+     * Returns an iterable collection of positions of the tree,
+     * reported in inorder.
+     */
+    public Iterable<Position<E>> inorder() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        if (!isEmpty()) {
+            inorderSubtree(root(), snapshot);                                   // fill the snapshot recursively
+        }
+        return snapshot;
+    }
+
+    /*
      * Adds positions of the subtree rooted at Position p to the given snapshot.
      */
     private void inorderSubtree(Position<E> p, List<Position<E>> snapshot) {
@@ -68,23 +80,46 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
     }
 
     /*
-     * Returns an iterable collection of positions of the tree,
-     * reported in inorder.
-     */
-    public Iterable<Position<E>> inorder() {
-        List<Position<E>> snapshot = new ArrayList<>();
-        if (!isEmpty()) {
-            inorderSubtree(root(), snapshot);                                   // fill the snapshot recursively
-        }
-        return snapshot;
-    }
-
-    /*
      * Overrides positions to make inorder the default order
      * for binary trees.
      */
     @Override
     public Iterable<Position<E>> positions() {
         return inorder();
+    }
+
+    /**
+     * Euler tour of the entire binary tree
+     */
+    public Iterable<Position<E>> eulerTourBinary() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        eulerTourBinarySubtree(root(), snapshot);
+
+        return snapshot;
+    }
+
+    /**
+     * Algorithm eulerTourBinary for performing an Euler tour traversal
+     * of a subtree rooted at position p of a binary tree.
+     *
+     * It is a simple combination of pre-order, in-order and post-order applied to a binary tree
+     */
+    private void eulerTourBinarySubtree(Position<E> p, List<Position<E>> snapshot) {
+        // perform pre-visit action
+        snapshot.add(p);
+
+        if (left(p) != null) {
+            eulerTourBinarySubtree(p, snapshot);
+        }
+
+        // perform in-visit action
+        snapshot.add(p);
+
+        if (right(p) != null) {
+            eulerTourBinarySubtree(p, snapshot);
+        }
+
+        // perform post-visit action
+        snapshot.add(p);
     }
 }
