@@ -122,4 +122,33 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
         // perform post-visit action
         snapshot.add(p);
     }
+
+    /**
+     * Computes the level number of all positions in the tree
+     * starting from the root.
+     */
+    public void computeLevelNumberForEntireTree() {
+        // i.e level number f(p) = 0 for root
+        computeLevelNumber(root(), 0);
+    }
+
+    /**
+     * R-8.15
+     *
+     * Compute level number f(p) of a position p using euler tour traversal
+     */
+    public void computeLevelNumber(Position<E> p, int fp) {
+
+        System.out.println("Level No for " + p.getElement() + ": " + fp);
+
+        if (left(p) != null) {
+            // int fp = 2*fq + 1;
+            computeLevelNumber(left(p), 2*fp + 1);
+        }
+
+        if (right(p) != null) {
+            // int fp = 2*fq + 2;
+            computeLevelNumber(right(p), 2*fp + 2);
+        }
+    }
 }
