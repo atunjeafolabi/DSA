@@ -340,4 +340,47 @@ public abstract class AbstractTree<E> implements Tree<E> {
         // perform post-visit action
         snapshot.add(p);
     }
+
+    /**
+     * C-8.28
+     *
+     * The path length of a tree T is the sum of the depths of all positions in T.
+     * Describe a linear-time method for computing the path length of a tree T.
+     *
+     * To find the path length of the entire tree, we pass root() to the parameter,
+     *
+     * Running Time:    this algorithm looks like O(n2) due to the presence of
+     * depth(c) which runs in O(n) Also, pathLength() will run n times,
+     * once for each position.
+     */
+    public int pathLength(Position<E> p) {
+        int count = 0;
+
+        for (Position<E> c : children(p)) {
+            count += depth(c) + pathLength(c);
+        }
+
+        return count;
+    }
+
+    /**
+     * This is an alternative efficient solution for finding the path length.
+     * Running Time:    O(n)
+     * since we only have to loop through the children only
+     *
+     * The reason why this solution is efficient is because we got rid of always
+     * re-computing depth(c) which runs in O(n). Instead, depth+1 is always
+     * passed as parameter to the next recursive call which proceeds to
+     * the next level of the tree.
+     */
+    public int pathLengthEff(Position<E> p, int depth) {
+        int count = 0;
+        int nextDepth = depth + 1;
+
+        for (Position<E> c : children(p)) {
+            count += nextDepth + pathLengthEff(c, nextDepth);
+        }
+
+        return count;
+    }
 }
