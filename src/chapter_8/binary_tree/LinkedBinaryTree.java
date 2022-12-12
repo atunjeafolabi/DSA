@@ -1,6 +1,8 @@
 package chapter_8.binary_tree;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import chapter_8.tree.Position;
 
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
@@ -254,6 +256,73 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
 
         return count;
+    }
+
+    /**
+     * C-8.33
+     *
+     * Check if two trees are Isomorphic for a Binary Tree
+     *
+     * (To Revisit)
+     */
+    public static <E> boolean isIsomorphic(Position<E> p1, Position<E> p2) {
+
+        if (p1 == null && p2 == null) {
+            return true;
+        }
+
+        if (p1 == null || p2 == null) {
+            return false;
+        }
+
+        if (p1.getElement() != p2.getElement()) {
+            return false;
+        }
+
+        Node<E> n1 = (Node<E>) p1;
+        Node<E> n2 = (Node<E>) p2;
+
+        boolean caseOne = isIsomorphic(n1.left, n2.left) && isIsomorphic(n1.right, n2.right);
+        boolean caseTwo = isIsomorphic(n1.left, n2.right) && isIsomorphic(n1.right, n2.left);
+
+        return caseOne || caseTwo;
+    }
+
+    /**
+     * C-8.36
+     *
+     * Add support in LinkedBinaryTree for a method, pruneSubtree(p), that removes the
+     * entire subtree rooted at position p, making sure to maintain an accurate count
+     * of the size of the tree. What is the running time of your implementation?
+     */
+    public void pruneSubtree(Position<E> p) {
+        // subtract the size of subtree rooted at p from the size of the entire tree
+        size -= sizeSubtree(p);
+
+        Node<E> n = (Node<E>) p;
+        Node<E> nParent = (Node<E>) parent(p);
+
+        // set the child of p's parent to be null
+        if (left(parent(p)) == p) {
+            nParent.setLeft(null);
+        }
+
+        if (right(parent(p)) == p) {
+            nParent.setRight(null);
+        }
+
+        // also link p to itself to delete/detach it from its parent
+        n.setParent(n);
+    }
+
+    /**
+     * Get the size of the subtree rooted at p
+     */
+    private int sizeSubtree(Position<E> p) {
+        List<Position<E>> snapshot = new ArrayList<>();
+        inorderSubtree(p, snapshot);
+
+        return snapshot.size();
     }
 
 }
