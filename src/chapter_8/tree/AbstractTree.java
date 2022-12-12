@@ -383,4 +383,36 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
         return count;
     }
+
+    public int pathLengthInternal(Position<E> p, int depth) {
+        int count = 0;
+        int nextDepth = depth + 1;
+
+        for (Position<E> c : children(p)) {
+
+            if (isInternal(c)) {
+                count += nextDepth;
+            }
+
+            count += pathLengthInternal(c, nextDepth);
+        }
+
+        return count;
+    }
+
+    public int pathLengthExternal(Position<E> p, int depth) {
+        int count = 0;
+        int nextDepth = depth + 1;
+
+        for (Position<E> c : children(p)) {
+
+            if (isExternal(c)) {
+                count += nextDepth;
+            }
+
+            count += pathLengthExternal(c, nextDepth);
+        }
+
+        return count;
+    }
 }

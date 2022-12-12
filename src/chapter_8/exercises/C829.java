@@ -12,7 +12,7 @@ import chapter_8.binary_tree.LinkedBinaryTree;
  *     /    /\
  *    H    J  I
  */
-public class C828 {
+public class C829 {
     public static void main(String[] args) {
         LinkedBinaryTree<String> tree = new LinkedBinaryTree<>();
 
@@ -33,12 +33,9 @@ public class C828 {
         tree.addLeft(tree.left(tree.right(tree.root())), "J");
         tree.addRight(tree.left(tree.right(tree.root())), "I");
 
-        // path length of the entire tree, starting from root
-        System.out.println(tree.pathLength(tree.root()));
+        // internal path length of the entire tree, starting from root
+        System.out.println("Internal Path Length: " + tree.pathLengthInternal(tree.root(), 0));
+        System.out.println("External Path Length: " + tree.pathLengthExternal(tree.root(), 0));
 
-        // path length of the subtree rooted at the left child of root
-        // System.out.println(tree.pathLength(tree.left(tree.root())));
-
-        System.out.println(tree.pathLengthEff(tree.root(), 0));
     }
 }
