@@ -325,4 +325,83 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return snapshot.size();
     }
 
+    /**
+     * C-8.37
+     *
+     * Add support in LinkedBinaryTree for a method, swap(p, q), that has the effect of restructuring
+     * the tree so that the node referenced by p takes the place of the node referenced by q, and
+     * vice versa. Make sure to properly handle the case when the nodes are adjacent.
+     *
+     * (To Revisit) - Not working yet
+     */
+    public void swap(Position<E> p, Position<E> q) {
+
+        Node<E> np = validate(p);
+        Node<E> nq = validate(q);
+
+        Node<E> parentP = np.getParent();
+        Node<E> leftP = np.getLeft();
+        Node<E> rightP = np.getRight();
+
+        Node<E> parentQ = nq.getParent();
+        Node<E> leftQ = nq.getLeft();
+        Node<E> rightQ = nq.getRight();
+
+
+        // i.e p and q have a parent-child relationship
+        if (np.getLeft() == nq || nq.getLeft() == np) {
+
+            return;
+        }
+
+        if (np.getRight() == nq || nq.getRight() == np) {
+
+            return;
+        }
+
+        // begin swapping
+        nq.setParent(parentP);
+
+        if (np == np.getParent().getLeft()) {
+            parentP.setLeft(nq);
+        }
+
+        if (np == np.getParent().getRight()) {
+            parentP.setRight(nq);
+        }
+
+        //
+        np.setParent(parentQ);
+
+        if (nq == nq.getParent().getLeft()) {
+            parentQ.setLeft(np);
+        }
+
+        if (nq == nq.getParent().getRight()) {
+            parentQ.setRight(np);
+        }
+    }
+
+
+    /**
+     * C-8.43
+     *
+     * Give an O(n)-time algorithm for computing the depths of all
+     * positions of a tree T, where n is the number of nodes of T.
+     *
+     * Optimization Tip used here:
+     * Instead of using depth(p), to calculate depth, we
+     * simply add one as we recursively go down in depth.
+     */
+    public void depthN(Position<E> p, int n) {
+        int nextDepth = n + 1;
+        if (isRoot(p)) {
+            System.out.println("Element: " + p.getElement() + " depth: " + 0);
+        }
+        for (Position<E> c : children(p)) {
+            System.out.println("Element: " + c.getElement() + " depth: " + nextDepth);
+            depthN(c, nextDepth);
+        }
+    }
+
 }

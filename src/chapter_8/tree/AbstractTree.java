@@ -86,8 +86,13 @@ public abstract class AbstractTree<E> implements Tree<E> {
      * This definition appears easier to reason about than the
      * definition of height above, though they look very similar.
      *
+     * UPDATE: This method will return a wrong value of 1
+     * instead of 0 for the height of the leaves. This
+     * makes this method incorrect!
+     *
      * Running time:    O(n)
      */
+    /**
     public int height2(Position<E> p) {
         int h = 0;
 
@@ -95,8 +100,9 @@ public abstract class AbstractTree<E> implements Tree<E> {
             h = Math.max(h, height(c));
         }
 
-        return 1 + h;
+        return 1 + h;   //
     }
+     **/
 
     /**
      * This class adapts the iteration produced by positions() to return elements.
@@ -414,5 +420,29 @@ public abstract class AbstractTree<E> implements Tree<E> {
         }
 
         return count;
+    }
+
+    /**
+     * C-8.42
+     *
+     * Solution for a General tree
+     * (First Attempt)
+     */
+    public int printElementAndHeightOfPosition(Position<E> p) {
+        System.out.println("Value of p: " + p.getElement());
+        int height = 0;
+
+        for (Position<E> c : children(p)) {
+            height = Math.max(height, printElementAndHeightOfPosition(c));
+        }
+
+        if (isExternal(p)) {
+            System.out.println("Height of p: " + 0);
+            return 0;
+        } else {
+            System.out.println(1 + height);
+            return 1 + height;
+        }
+
     }
 }
