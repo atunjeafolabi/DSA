@@ -404,4 +404,43 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
     }
 
+    /**
+     * C-8.44
+     *
+     * The balance factor of an internal position p of a proper binary tree
+     * is the difference between the heights of the right and left subtrees
+     * of p. Show how to specialize the Euler tour traversal of
+     * Section 8.4.6 to print the balance factors of all the
+     * internal nodes of a proper binary tree
+     *
+     * TODO: Suggested Optimization Tip:
+     * This algorithm works but it can be improved by avoiding the use of height(p)
+     * to determine the height of each position. Instead, the height of each
+     * position can be determined by starting from the height of the leaves
+     * as 0 and then returning h+1 from the recursive calls.
+     */
+    public void balanceFactor(Position<E> p) {
+        int hLeft = 0;
+        int hRight = 0;
+
+        if (isInternal(p)) {
+            if (left(p) != null)
+                hLeft = height(left(p));
+
+            if (right(p) != null)
+                hRight = height(right(p));
+
+            System.out.println("Element: " + p.getElement());
+
+            System.out.println("Balance factor: " + (hLeft - hRight));
+        }
+
+        if (left(p) != null) {
+            balanceFactor(left(p));
+        }
+
+        if (right(p) != null) {
+            balanceFactor(right(p));
+        }
+    }
 }
