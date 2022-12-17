@@ -71,6 +71,8 @@ public interface PositionalList<E> extends Iterable<E>   {
      */
     E remove(Position<E> p) throws IllegalArgumentException;
 
+    Iterable<Position<E>> positions();
+
     int indexOf(Position<E> p) throws IllegalArgumentException;
 
     Position<E> findPosition(E e);
