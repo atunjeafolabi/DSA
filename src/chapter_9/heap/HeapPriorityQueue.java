@@ -1,7 +1,9 @@
 package chapter_9.heap;
 
+import chapter_7.positional_list.PositionalList;
 import chapter_9.priority_queue.AbstractPriorityQueue;
 import chapter_9.priority_queue.Entry;
+import chapter_9.priority_queue.PriorityQueue;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,6 +18,14 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
 
     public HeapPriorityQueue(Comparator<K> comp) {
         super(comp);
+    }
+
+    public HeapPriorityQueue(K[] keys, V[] values) {
+        super();
+        for (int j = 0; j < Math.min(keys.length, values.length); j++) {
+            heap.add(new PQEntry<>(keys[j], values[j]));
+        }
+        heapify();
     }
 
     // protected utilities
@@ -131,4 +141,36 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
 
         return temp;
     }
+
+    /**
+     * Performs a bottom-up construction of
+     * the heap in linear time, i.e O(n).
+     */
+    protected void heapify() {
+        int startIndex = parent(size() - 1);             // start at PARENT of last entry
+        for (int j = startIndex; j >= 0; j--) {             // loop until processing the root
+            downheap(j);
+        }
+    }
+
+    /*
+     * Sorting with a Priority Queue.
+     * This method will also work for other
+     * implementations of priority queue.
+     *
+     * Sorts sequence S, using initially empty
+     * priority queue P to produce the order.
+    */
+    public static <E> void pqSort(PositionalList<E> S, PriorityQueue<E, ?> P) {
+        int n = S.size();
+        for (int j = 0; j < n; j++) {
+            E element = S.remove(S.first());
+            P.insert(element, null);
+        }
+        for (int j = 0; j < n; j++) {
+            E element = P.removeMin().getKey();
+            S.addLast(element);
+        }
+    }
+
 }
