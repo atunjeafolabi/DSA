@@ -154,12 +154,13 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
     }
 
     /*
-     * Sorting with a Priority Queue.
-     * This method will also work for other
-     * implementations of priority queue.
+     * An implementation of a pqSort method that sorts elements of
+     * a positional list using an initially empty priority queue
+     * to produce the ordering.
      *
-     * Sorts sequence S, using initially empty
-     * priority queue P to produce the order.
+     * This method will also work for other
+     * implementations of priority queue
+     * i.e UnsortedPriorityQueue and SortedPriorityQueue
     */
     public static <E> void pqSort(PositionalList<E> S, PriorityQueue<E, ?> P) {
         int n = S.size();
