@@ -1,5 +1,7 @@
 package chapter_9.priority_queue;
 
+import chapter_9.heap.HeapPriorityQueue;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -9,6 +11,7 @@ public class Main {
         Student sam = new Student("Sam");
         Rating samRating = new Rating(2);
 
+//        PriorityQueue<Rating, Student> pq = new HeapPriorityQueue<>();
         PriorityQueue<Rating, Student> pq = new UnsortedPriorityQueue<>();
         pq.insert(benRating, ben);
         pq.insert(samRating, sam);

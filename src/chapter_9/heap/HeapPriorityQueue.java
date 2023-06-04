@@ -8,6 +8,16 @@ import chapter_9.priority_queue.PriorityQueue;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * TIME COMPLEXITY
+ * Implementation of a priority queue using a heap is more efficient
+ * than the implementation using either an Unsorted or Sorted list.
+ *
+ * For an unsorted list, removeMin is O(n) but insert is O(1)
+ * For a sorted list, removeMin is O(1) but insert is O(n).
+ *
+ * But for a heap, both insert and removeMin is O(log n) which is better.
+ */
 public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
 
     protected ArrayList<Entry<K, V>> heap = new ArrayList<>();
