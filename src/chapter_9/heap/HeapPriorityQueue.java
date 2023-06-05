@@ -30,6 +30,17 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
         super(comp);
     }
 
+    /**
+     * Instead of using the insert method to insert entries one at a time,
+     * the bottom-up heapify method can be used to build a heap given
+     * that all the entries are known beforehand.
+     *
+     * Although the insert method runs in O(log n) which is good,
+     * but for n insert calls, it runs in O(nlogn)
+     *
+     * The heapify method runs in O(n) which is better
+     * in this scenario.
+     */
     public HeapPriorityQueue(K[] keys, V[] values) {
         super();
         for (int j = 0; j < Math.min(keys.length, values.length); j++) {
