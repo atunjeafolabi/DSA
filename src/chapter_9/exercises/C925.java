@@ -39,11 +39,18 @@ public class C925<E> implements Stack<E> {
 
     @Override
     public E top() {
+        if (queue.isEmpty()) {
+            return null;
+        }
         return (E) queue.min().getValue();
     }
 
     @Override
     public E pop() {
+        if (queue.isEmpty()) {
+            return null;
+        }
+        x--;
         return (E) queue.removeMin().getValue();
     }
 
