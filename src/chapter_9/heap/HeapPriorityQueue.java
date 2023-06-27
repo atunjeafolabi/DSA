@@ -112,6 +112,32 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
     }
 
     /**
+     * C-9.30
+     *
+     * An alternative implementation of the HeapPriorityQueue’s
+     * downheap method that uses recursion (and no loop).
+     */
+    protected void downheap2(int j) {
+        if (hasLeft(j)) {
+            int leftChildIndex = left(j);
+            int smallChildIndex = leftChildIndex;
+
+            if (hasRight(j)) {
+                int rightChildIndex = right(j);
+
+                if (compare(heap.get(leftChildIndex), heap.get(rightChildIndex)) >= 0) {
+                    smallChildIndex = rightChildIndex;
+                }
+            }
+
+            if (compare(heap.get(j), heap.get(smallChildIndex)) >= 0) {
+                swap(j, smallChildIndex);
+            }
+            downheap2(smallChildIndex);
+        }
+    }
+
+    /**
      * Moves the entry at index j lower, if necessary,
      * to restore the heap property.
      */
@@ -173,7 +199,7 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
         Entry<K, V> temp = heap.get(0);
         swap(0, heap.size() - 1);
         heap.remove(heap.size() - 1);
-        downheap(0);
+        downheap2(0);
 
         return temp;
     }
