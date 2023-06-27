@@ -97,6 +97,21 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
     }
 
     /**
+     * C-9.29
+     *
+     * Alternative implementation of upheap
+     * (recursive)
+     */
+    protected void upheap2(int j) {
+        int p = parent(j);
+
+        if (compare(heap.get(j), heap.get(p)) < 0) {
+            swap(j, p);
+            upheap2(p);
+        }
+    }
+
+    /**
      * Moves the entry at index j lower, if necessary,
      * to restore the heap property.
      */
@@ -143,7 +158,7 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
 
         Entry<K, V> newest = new PQEntry<>(key, value);
         heap.add(newest);
-        upheap(heap.size() - 1);
+        upheap2(heap.size() - 1);
 
         return newest;
     }

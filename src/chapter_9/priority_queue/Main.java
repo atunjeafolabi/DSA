@@ -11,15 +11,15 @@ public class Main {
         Student sam = new Student("Sam");
         Rating samRating = new Rating(2);
 
-//        PriorityQueue<Rating, Student> pq = new HeapPriorityQueue<>();
-        PriorityQueue<Rating, Student> pq = new UnsortedPriorityQueue<>();
+        PriorityQueue<Rating, Student> pq = new HeapPriorityQueue<>();
+//        PriorityQueue<Rating, Student> pq = new UnsortedPriorityQueue<>();
         pq.insert(benRating, ben);
         pq.insert(samRating, sam);
 
         System.out.println("Rating: " + pq.min().getKey().getValue());
         System.out.println("Student's Name: " + pq.min().getValue().getName());
 
-        System.out.println(pq.size());
+        System.out.println("Size: " + pq.size());
     }
 }
 
