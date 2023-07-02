@@ -266,15 +266,15 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
     /**
      * C937
      */
-    public static <K, V> HeapPriorityQueue<K, V> combine(HeapPriorityQueue<K, V> t1, HeapPriorityQueue<K, V> t2) {
-        HeapPriorityQueue<K, V> T = new HeapPriorityQueue<>();
+    public static <N, M> HeapPriorityQueue<N, M> combine(HeapPriorityQueue<N, M> t1, HeapPriorityQueue<N, M> t2) {
+        HeapPriorityQueue<N, M> T = new HeapPriorityQueue<>();
         while(t1.size() != 0) {
-            Entry<K, V> temp = t1.removeMin();
+            Entry<N, M> temp = t1.removeMin();
             T.insert(temp.getKey(), temp.getValue());
         }
 
         while(t2.size() != 0) {
-            Entry<K, V> temp = t2.removeMin();
+            Entry<N, M> temp = t2.removeMin();
             T.insert(temp.getKey(), temp.getValue());
         }
 
