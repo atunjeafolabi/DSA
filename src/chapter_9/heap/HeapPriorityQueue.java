@@ -7,15 +7,16 @@ import chapter_9.priority_queue.PriorityQueue;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * TIME COMPLEXITY
  * Implementation of a priority queue using a heap is more efficient
  * than the implementation using either an Unsorted or Sorted list.
- *
+ * <p>
  * For an unsorted list, removeMin is O(n) but insert is O(1)
  * For a sorted list, removeMin is O(1) but insert is O(n).
- *
+ * <p>
  * But for a heap, both insert and removeMin is O(log n) which is better.
  */
 public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
@@ -34,10 +35,10 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
      * Instead of using the insert method to insert entries one at a time,
      * the bottom-up heapify method can be used to build a heap given
      * that all the entries are known beforehand.
-     *
+     * <p>
      * Although the insert method runs in O(log n) which is good,
      * but for n insert calls, it runs in O(nlogn)
-     *
+     * <p>
      * The heapify method runs in O(n) which is better
      * in this scenario.
      */
@@ -98,7 +99,7 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
 
     /**
      * C-9.29
-     *
+     * <p>
      * Alternative implementation of upheap
      * (recursive)
      */
@@ -113,7 +114,7 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
 
     /**
      * C-9.30
-     *
+     * <p>
      * An alternative implementation of the HeapPriorityQueue’s
      * downheap method that uses recursion (and no loop).
      */
@@ -223,7 +224,7 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
      * This method will also work for other
      * implementations of priority queue
      * i.e UnsortedPriorityQueue and SortedPriorityQueue
-    */
+     */
     public static <E> void pqSort(PositionalList<E> S, PriorityQueue<E, ?> P) {
         int n = S.size();
         for (int j = 0; j < n; j++) {
@@ -233,6 +234,32 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
         for (int j = 0; j < n; j++) {
             E element = P.removeMin().getKey();
             S.addLast(element);
+        }
+    }
+
+    /**
+     * C-9.34
+     */
+    public List<Entry<K, V>> equalOrLessThan(Entry<K, V> entry) {
+        List<Entry<K, V>> list = new ArrayList<>();
+
+        preOrder(0, entry, list);
+
+        return list;
+    }
+
+    private void preOrder(int key, Entry<K, V> entry, List<Entry<K, V>> list) {
+        if (compare(heap.get(key), entry) <= 0) {
+            // perform visit action
+            list.add(heap.get(key));
+
+            if (hasLeft(key)) {
+                preOrder(left(key), entry, list);
+            }
+
+            if (hasRight(key)) {
+                preOrder(right(key), entry, list);
+            }
         }
     }
 
