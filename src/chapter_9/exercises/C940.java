@@ -7,6 +7,7 @@ import chapter_9.priority_queue.AbstractPriorityQueue;
 import chapter_9.priority_queue.DefaultComparator;
 import chapter_9.priority_queue.Entry;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -16,6 +17,7 @@ import java.util.Comparator;
  * size n can be found in time O(nlogk) using O(k) auxiliary space.
  *
  * This is a maximum oriented approach for UnsortedPriorityQueue
+ * (TODO: not sure about the time complexity)
  */
 public class C940<K, V> {
 
@@ -136,13 +138,16 @@ public class C940<K, V> {
         pq.insert(4, "Ken");
         pq.insert(4, "Kate");
 
-        int k = 3;
+        int k = 4;
+        ArrayList<Entry<Integer, String>> largestKElements = new ArrayList<>();
 
+        for (int i = 0; i < k; i++){
+            largestKElements.add(pq.removeMax());
+        }
 
-        Entry pqEntry;
-        while (!pq.isEmpty()) {
-            pqEntry = pq.removeMax();
-            System.out.println("[" + pqEntry.getKey() + ", " + pqEntry.getValue() + "]");
+        // Display the largest k elements
+        for (Entry<Integer, String> entry : largestKElements){
+            System.out.println("[" + entry.getKey() + ", " + entry.getValue() + "]");
         }
     }
 }
