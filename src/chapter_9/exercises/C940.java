@@ -3,7 +3,6 @@ package chapter_9.exercises;
 import chapter_7.positional_list.IterableLinkedPositionalList.LinkedPositionalList;
 import chapter_7.positional_list.Position;
 import chapter_7.positional_list.PositionalList;
-import chapter_9.priority_queue.AbstractPriorityQueue;
 import chapter_9.priority_queue.DefaultComparator;
 import chapter_9.priority_queue.Entry;
 
@@ -123,6 +122,16 @@ public class C940<K, V> {
         return comp.compare(a.getKey(), b.getKey());
     }
 
+    public ArrayList<Entry<K, V>> kLargestElements(int k) {
+        ArrayList<Entry<K, V>> largestKElements = new ArrayList<>();
+
+        for (int i = 0; i < k; i++){
+            largestKElements.add(removeMax());
+        }
+
+        return largestKElements;
+    }
+
     public boolean isEmpty() {
         return size() == 0;
     }
@@ -139,14 +148,8 @@ public class C940<K, V> {
         pq.insert(4, "Kate");
 
         int k = 4;
-        ArrayList<Entry<Integer, String>> largestKElements = new ArrayList<>();
-
-        for (int i = 0; i < k; i++){
-            largestKElements.add(pq.removeMax());
-        }
-
         // Display the largest k elements
-        for (Entry<Integer, String> entry : largestKElements){
+        for (Entry<Integer, String> entry : pq.kLargestElements(k)){
             System.out.println("[" + entry.getKey() + ", " + entry.getValue() + "]");
         }
     }
