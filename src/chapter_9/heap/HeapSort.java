@@ -7,8 +7,13 @@ import java.util.ArrayList;
 /**
  * Section 9.4.2
  *
- * Implementing Heap-Sort In-Place
+ * Implementing Heap-Sort in-place
  * (using max-oriented heap)
+ *
+ * --------------------------
+ *
+ * Problem C-9.46 can be solved using this same line of reasoning.
+ * We will only just use the min-oriented heap approach instead.
  */
 public class HeapSort<E> {
 
