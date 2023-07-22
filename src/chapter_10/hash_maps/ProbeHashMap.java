@@ -29,6 +29,10 @@ public class ProbeHashMap<K, V> extends AbstractHashMap<K, V> {
         return (table[j] == null || table[j] == DEFUNCT);
     }
 
+    /**
+     * Returns index with key k, or −(a+1)
+     * such that k could be added at index a.
+     * */
     private int findSlot(int h, K k) {
         int avail = -1;                 // no slot available (thus far)
         int j = h;                      // index while scanning table
