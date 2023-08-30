@@ -84,6 +84,19 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
         }
     }
 
+    /**
+     * R-10.3
+     */
+    public boolean containsKey(K key) {
+        Iterator<Entry<K, V>> i = entrySet().iterator();
+        while (i.hasNext()) {
+            Entry<K, V> e = i.next();
+            if (key.equals(e.getKey()))
+                return true;
+        }
+        return false;
+    }
+
     private class EntryIterable implements Iterable<Entry<K, V>> {
 
         @Override
